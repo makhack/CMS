@@ -1,3 +1,7 @@
 ipf_front_homepage:
     path:     /hello/{name}
     defaults: { _controller: IpfFrontBundle:Default:index }
+    
+ipf_front_add_product:
+    path: /add/product
+    defaults : { _controller: IpfFrontBundle:Product:index}

@@ -34,6 +34,33 @@ class Category
      * @ORM\Column(name="category_description", type="text", nullable=true)
      */
     private $categoryDescription;
+    
+    
+    function getCategoryId() {
+        return $this->categoryId;
+    }
+
+    function getCategoryName() {
+        return $this->categoryName;
+    }
+
+    function getCategoryDescription() {
+        return $this->categoryDescription;
+    }
+
+    function setCategoryId($categoryId) {
+        $this->categoryId = $categoryId;
+    }
+
+    function setCategoryName($categoryName) {
+        $this->categoryName = $categoryName;
+    }
+
+    function setCategoryDescription($categoryDescription) {
+        $this->categoryDescription = $categoryDescription;
+    }
+
+
 
 
 }

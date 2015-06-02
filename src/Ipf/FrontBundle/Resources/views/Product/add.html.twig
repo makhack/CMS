@@ -1,0 +1,10 @@
+<ul id="navigation">
+    {% for product in products %}
+        <li>
+            <h3> {{ product.productName }} </h3>
+            <h5> {{ product.productDescription }} </h5>
+            <h5> {{ product.productValidated  }} </h5>
+            <h5> {{ product.productCategory.categoryName }} </h5>
+        </li>
+    {% endfor %}
+</ul>

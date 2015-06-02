@@ -52,5 +52,46 @@ class Product
      */
     private $productCategory;
 
+    function getProductId() {
+        return $this->productId;
+    }
+
+    function getProductName() {
+        return $this->productName;
+    }
+
+    function getProductDescription() {
+        return $this->productDescription;
+    }
+
+    function getProductValidated() {
+        return $this->productValidated;
+    }
+
+    function getProductCategory() {
+        return $this->productCategory;
+    }
+
+    function setProductId($productId) {
+        $this->productId = $productId;
+    }
+
+    function setProductName($productName) {
+        $this->productName = $productName;
+    }
+
+    function setProductDescription($productDescription) {
+        $this->productDescription = $productDescription;
+    }
+
+    function setProductValidated($productValidated) {
+        $this->productValidated = $productValidated;
+    }
+
+    function setProductCategory(\Category $productCategory) {
+        $this->productCategory = $productCategory;
+    }
+
+
 
 }
