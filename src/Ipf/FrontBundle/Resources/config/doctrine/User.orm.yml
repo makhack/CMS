@@ -1,4 +1,4 @@
-User:
+Ipf\FrontBundle\Entity\User:
     type: entity
     table: user
     uniqueConstraints:
