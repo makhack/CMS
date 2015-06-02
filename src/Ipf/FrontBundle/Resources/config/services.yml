@@ -1,0 +1,4 @@
+services:
+#    ipf_front.example:
+#        class: Ipf\FrontBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

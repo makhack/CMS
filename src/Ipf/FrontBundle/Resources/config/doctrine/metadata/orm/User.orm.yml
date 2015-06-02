@@ -1,0 +1,85 @@
+User:
+    type: entity
+    table: user
+    id:
+        userId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        userLogin:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_login
+        userPassword:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_password
+        userFirstname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_firstname
+        userLastname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_lastname
+        userMail:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_mail
+        userPhone:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+            column: user_phone
+        userCity:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: user_city
+        userPostalcode:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: user_postalcode
+        userAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_address
+        userRole:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: user_role
+    lifecycleCallbacks: {  }
