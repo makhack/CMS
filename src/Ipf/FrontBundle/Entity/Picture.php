@@ -39,4 +39,60 @@ class Picture
     private $pictureProductid;
 
 
+
+    /**
+     * Get pictureId
+     *
+     * @return integer 
+     */
+    public function getPictureId()
+    {
+        return $this->pictureId;
+    }
+
+    /**
+     * Set pictureUrl
+     *
+     * @param string $pictureUrl
+     * @return Picture
+     */
+    public function setPictureUrl($pictureUrl)
+    {
+        $this->pictureUrl = $pictureUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureUrl
+     *
+     * @return string 
+     */
+    public function getPictureUrl()
+    {
+        return $this->pictureUrl;
+    }
+
+    /**
+     * Set pictureProductid
+     *
+     * @param \Ipf\FrontBundle\Entity\Product $pictureProductid
+     * @return Picture
+     */
+    public function setPictureProductid(\Ipf\FrontBundle\Entity\Product $pictureProductid = null)
+    {
+        $this->pictureProductid = $pictureProductid;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureProductid
+     *
+     * @return \Ipf\FrontBundle\Entity\Product 
+     */
+    public function getPictureProductid()
+    {
+        return $this->pictureProductid;
+    }
 }

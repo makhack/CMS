@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Notification" table="notification">
+    <indexes>
+      <index name="fk_notif_user_idx" columns="notification_user_id"/>
+    </indexes>
+    <id name="notificationId" type="integer" column="notification_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="notificationDescription" type="text" column="notification_description" nullable="false"/>
+    <field name="notificationExpired" type="boolean" column="notification_expired" nullable="false"/>
+    <many-to-one field="notificationUser" target-entity="User">
+      <join-columns>
+        <join-column name="notification_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

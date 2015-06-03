@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Order" table="order">
+    <indexes>
+      <index name="fk_user_buyer_idx" columns="order_user_buyer_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="order_totalPrice_UNIQUE" columns="order_totalPrice"/>
+    </unique-constraints>
+    <id name="orderId" type="integer" column="order_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="orderTotalprice" type="integer" column="order_totalPrice" nullable="false"/>
+    <field name="orderDate" type="datetime" column="order_date" nullable="false"/>
+    <many-to-one field="orderUserBuyer" target-entity="User">
+      <join-columns>
+        <join-column name="order_user_buyer_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

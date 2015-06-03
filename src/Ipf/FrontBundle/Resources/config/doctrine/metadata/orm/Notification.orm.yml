@@ -1,0 +1,41 @@
+Notification:
+    type: entity
+    table: notification
+    indexes:
+        fk_notif_user_idx:
+            columns:
+                - notification_user_id
+    id:
+        notificationId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: notification_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        notificationDescription:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: notification_description
+        notificationExpired:
+            type: boolean
+            nullable: false
+            comment: ''
+            column: notification_expired
+    manyToOne:
+        notificationUser:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                notification_user_id:
+                    referencedColumnName: user_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

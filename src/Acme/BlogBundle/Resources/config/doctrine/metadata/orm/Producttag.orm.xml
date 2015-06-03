@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Producttag" table="producttag">
+    <indexes>
+      <index name="FK_productTag_product_idx" columns="productTag_product_id"/>
+      <index name="FK_productTag_tag_idx" columns="productTag_tag_id"/>
+    </indexes>
+    <id name="producttagId" type="integer" column="productTag_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="producttagTag" target-entity="Tag">
+      <join-columns>
+        <join-column name="productTag_tag_id" referenced-column-name="tag_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="producttagProduct" target-entity="Product">
+      <join-columns>
+        <join-column name="productTag_product_id" referenced-column-name="product_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

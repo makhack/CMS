@@ -45,7 +45,7 @@ class Userproduct
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="userProduct_soldDate", type="datetime", nullable=false)
+     * @ORM\Column(name="userProduct_soldDate", type="datetime", nullable=true)
      */
     private $userproductSolddate;
 
@@ -55,6 +55,13 @@ class Userproduct
      * @ORM\Column(name="userProduct_description", type="text", nullable=false)
      */
     private $userproductDescription;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userProduct_validated", type="boolean", nullable=false)
+     */
+    private $userproductValidated;
 
     /**
      * @var \Product
@@ -75,72 +82,200 @@ class Userproduct
      * })
      */
     private $userproductUser;
-    
-    function getUserproductId() {
+
+
+
+    /**
+     * Get userproductId
+     *
+     * @return integer 
+     */
+    public function getUserproductId()
+    {
         return $this->userproductId;
     }
 
-    function getUserproductPrice() {
+    /**
+     * Set userproductPrice
+     *
+     * @param integer $userproductPrice
+     * @return Userproduct
+     */
+    public function setUserproductPrice($userproductPrice)
+    {
+        $this->userproductPrice = $userproductPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductPrice
+     *
+     * @return integer 
+     */
+    public function getUserproductPrice()
+    {
         return $this->userproductPrice;
     }
 
-    function getUserproductSold() {
+    /**
+     * Set userproductSold
+     *
+     * @param boolean $userproductSold
+     * @return Userproduct
+     */
+    public function setUserproductSold($userproductSold)
+    {
+        $this->userproductSold = $userproductSold;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductSold
+     *
+     * @return boolean 
+     */
+    public function getUserproductSold()
+    {
         return $this->userproductSold;
     }
 
-    function getUserproductSaledate() {
+    /**
+     * Set userproductSaledate
+     *
+     * @param \DateTime $userproductSaledate
+     * @return Userproduct
+     */
+    public function setUserproductSaledate($userproductSaledate)
+    {
+        $this->userproductSaledate = $userproductSaledate;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductSaledate
+     *
+     * @return \DateTime 
+     */
+    public function getUserproductSaledate()
+    {
         return $this->userproductSaledate;
     }
 
-    function getUserproductSolddate() {
+    /**
+     * Set userproductSolddate
+     *
+     * @param \DateTime $userproductSolddate
+     * @return Userproduct
+     */
+    public function setUserproductSolddate($userproductSolddate)
+    {
+        $this->userproductSolddate = $userproductSolddate;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductSolddate
+     *
+     * @return \DateTime 
+     */
+    public function getUserproductSolddate()
+    {
         return $this->userproductSolddate;
     }
 
-    function getUserproductDescription() {
+    /**
+     * Set userproductDescription
+     *
+     * @param string $userproductDescription
+     * @return Userproduct
+     */
+    public function setUserproductDescription($userproductDescription)
+    {
+        $this->userproductDescription = $userproductDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductDescription
+     *
+     * @return string 
+     */
+    public function getUserproductDescription()
+    {
         return $this->userproductDescription;
     }
 
-    function getUserproductProduct() {
+    /**
+     * Set userproductValidated
+     *
+     * @param boolean $userproductValidated
+     * @return Userproduct
+     */
+    public function setUserproductValidated($userproductValidated)
+    {
+        $this->userproductValidated = $userproductValidated;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductValidated
+     *
+     * @return boolean 
+     */
+    public function getUserproductValidated()
+    {
+        return $this->userproductValidated;
+    }
+
+    /**
+     * Set userproductProduct
+     *
+     * @param \Ipf\FrontBundle\Entity\Product $userproductProduct
+     * @return Userproduct
+     */
+    public function setUserproductProduct(\Ipf\FrontBundle\Entity\Product $userproductProduct = null)
+    {
+        $this->userproductProduct = $userproductProduct;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductProduct
+     *
+     * @return \Ipf\FrontBundle\Entity\Product 
+     */
+    public function getUserproductProduct()
+    {
         return $this->userproductProduct;
     }
 
-    function getUserproductUser() {
+    /**
+     * Set userproductUser
+     *
+     * @param \Ipf\FrontBundle\Entity\User $userproductUser
+     * @return Userproduct
+     */
+    public function setUserproductUser(\Ipf\FrontBundle\Entity\User $userproductUser = null)
+    {
+        $this->userproductUser = $userproductUser;
+
+        return $this;
+    }
+
+    /**
+     * Get userproductUser
+     *
+     * @return \Ipf\FrontBundle\Entity\User 
+     */
+    public function getUserproductUser()
+    {
         return $this->userproductUser;
     }
-
-    function setUserproductId($userproductId) {
-        $this->userproductId = $userproductId;
-    }
-
-    function setUserproductPrice($userproductPrice) {
-        $this->userproductPrice = $userproductPrice;
-    }
-
-    function setUserproductSold($userproductSold) {
-        $this->userproductSold = $userproductSold;
-    }
-
-    function setUserproductSaledate(\DateTime $userproductSaledate) {
-        $this->userproductSaledate = $userproductSaledate;
-    }
-
-    function setUserproductSolddate(\DateTime $userproductSolddate) {
-        $this->userproductSolddate = $userproductSolddate;
-    }
-
-    function setUserproductDescription($userproductDescription) {
-        $this->userproductDescription = $userproductDescription;
-    }
-
-    function setUserproductProduct(\Product $userproductProduct) {
-        $this->userproductProduct = $userproductProduct;
-    }
-
-    function setUserproductUser(\User $userproductUser) {
-        $this->userproductUser = $userproductUser;
-    }
-
-
-
-
 }

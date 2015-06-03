@@ -2,8 +2,8 @@
 
 namespace Ipf\FrontBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Ipf\FrontBundle\Entity\Category;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product
@@ -30,14 +30,7 @@ class Product
     private $productName;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="product_validated", type="boolean", nullable=false)
-     */
-    private $productValidated;
-
-    /**
-     * @var \Category
+     * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
@@ -46,35 +39,61 @@ class Product
      */
     private $productCategory;
 
-    function getProductId() {
+
+
+    /**
+     * Get productId
+     *
+     * @return integer 
+     */
+    public function getProductId()
+    {
         return $this->productId;
     }
 
-    function getProductName() {
+    /**
+     * Set productName
+     *
+     * @param string $productName
+     * @return Product
+     */
+    public function setProductName($productName)
+    {
+        $this->productName = $productName;
+
+        return $this;
+    }
+
+    /**
+     * Get productName
+     *
+     * @return string 
+     */
+    public function getProductName()
+    {
         return $this->productName;
     }
 
-    function getProductValidated() {
-        return $this->productValidated;
-    }
-
-    function getProductCategory() {
-        return $this->productCategory;
-    }
-
-    function setProductId($productId) {
-        $this->productId = $productId;
-    }
-
-    function setProductName($productName) {
-        $this->productName = $productName;
-    }
-
-    function setProductValidated($productValidated) {
-        $this->productValidated = $productValidated;
-    }
-
-    function setProductCategory(Category $productCategory) {
+    /**
+     * Set productCategory
+     *
+     * @param Category $productCategory
+     * @return Product
+     */
+    public function setProductCategory(Category $productCategory = null)
+    {
         $this->productCategory = $productCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get productCategory
+     *
+     * @return Category 
+     */
+    public function getProductCategory()
+    {
+        return $this->productCategory;
     }
 }

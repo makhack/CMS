@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Userproduct" table="userproduct">
+    <indexes>
+      <index name="FK_userproduct_user_idx" columns="userProduct_user_id"/>
+      <index name="FK_userproduct_product_idx" columns="userProduct_product_id"/>
+    </indexes>
+    <id name="userproductId" type="integer" column="userProduct_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userproductPrice" type="integer" column="userProduct_price" nullable="false"/>
+    <field name="userproductSold" type="boolean" column="userProduct_sold" nullable="false"/>
+    <field name="userproductSaledate" type="datetime" column="userProduct_saleDate" nullable="false"/>
+    <field name="userproductSolddate" type="datetime" column="userProduct_soldDate" nullable="true"/>
+    <field name="userproductDescription" type="text" column="userProduct_description" nullable="false"/>
+    <field name="userproductValidated" type="boolean" column="userProduct_validated" nullable="false"/>
+    <many-to-one field="userproductUser" target-entity="User">
+      <join-columns>
+        <join-column name="userProduct_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="userproductProduct" target-entity="Product">
+      <join-columns>
+        <join-column name="userProduct_product_id" referenced-column-name="product_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

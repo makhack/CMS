@@ -40,10 +40,89 @@ class Order
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_user_buyer_id", referencedColumnName="user_id", nullable=false)
+     *   @ORM\JoinColumn(name="order_user_buyer_id", referencedColumnName="user_id")
      * })
      */
     private $orderUserBuyer;
 
 
+
+    /**
+     * Get orderId
+     *
+     * @return integer 
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * Set orderTotalprice
+     *
+     * @param integer $orderTotalprice
+     * @return Order
+     */
+    public function setOrderTotalprice($orderTotalprice)
+    {
+        $this->orderTotalprice = $orderTotalprice;
+
+        return $this;
+    }
+
+    /**
+     * Get orderTotalprice
+     *
+     * @return integer 
+     */
+    public function getOrderTotalprice()
+    {
+        return $this->orderTotalprice;
+    }
+
+    /**
+     * Set orderDate
+     *
+     * @param \DateTime $orderDate
+     * @return Order
+     */
+    public function setOrderDate($orderDate)
+    {
+        $this->orderDate = $orderDate;
+
+        return $this;
+    }
+
+    /**
+     * Get orderDate
+     *
+     * @return \DateTime 
+     */
+    public function getOrderDate()
+    {
+        return $this->orderDate;
+    }
+
+    /**
+     * Set orderUserBuyer
+     *
+     * @param \Ipf\FrontBundle\Entity\User $orderUserBuyer
+     * @return Order
+     */
+    public function setOrderUserBuyer(\Ipf\FrontBundle\Entity\User $orderUserBuyer = null)
+    {
+        $this->orderUserBuyer = $orderUserBuyer;
+
+        return $this;
+    }
+
+    /**
+     * Get orderUserBuyer
+     *
+     * @return \Ipf\FrontBundle\Entity\User 
+     */
+    public function getOrderUserBuyer()
+    {
+        return $this->orderUserBuyer;
+    }
 }
