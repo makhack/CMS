@@ -1,9 +1,8 @@
 <?php
 
-namespace Ipf\FrontBundle\Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
-use Ipf\FrontBundle\Entity\Category;
 
 /**
  * Product
@@ -46,35 +45,5 @@ class Product
      */
     private $productCategory;
 
-    function getProductId() {
-        return $this->productId;
-    }
 
-    function getProductName() {
-        return $this->productName;
-    }
-
-    function getProductValidated() {
-        return $this->productValidated;
-    }
-
-    function getProductCategory() {
-        return $this->productCategory;
-    }
-
-    function setProductId($productId) {
-        $this->productId = $productId;
-    }
-
-    function setProductName($productName) {
-        $this->productName = $productName;
-    }
-
-    function setProductValidated($productValidated) {
-        $this->productValidated = $productValidated;
-    }
-
-    function setProductCategory(Category $productCategory) {
-        $this->productCategory = $productCategory;
-    }
 }

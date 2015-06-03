@@ -1,0 +1,40 @@
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
+
+{% block body -%}
+    <h1>Product</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Productid</th>
+                <td>{{ entity.productId }}</td>
+            </tr>
+            <tr>
+                <th>Productname</th>
+                <td>{{ entity.productName }}</td>
+            </tr>
+            <tr>
+                <th>Productdescription</th>
+                <td>{{ entity.productDescription }}</td>
+            </tr>
+            <tr>
+                <th>Productvalidated</th>
+                <td>{{ entity.productValidated }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('product') }}">
+            Back to the list
+        </a>
+    </li>
+{#    <li>
+        <a href="{{ path('product_edit', { 'id': entity.productId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>#}
+</ul>
+{% endblock %}

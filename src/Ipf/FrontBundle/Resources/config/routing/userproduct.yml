@@ -1,0 +1,30 @@
+userproduct:
+    path:     /
+    defaults: { _controller: "IpfFrontBundle:Userproduct:index" }
+
+userproduct_show:
+    path:     /{id}/show
+    defaults: { _controller: "IpfFrontBundle:Userproduct:show" }
+
+userproduct_new:
+    path:     /new
+    defaults: { _controller: "IpfFrontBundle:Userproduct:new" }
+
+userproduct_create:
+    path:     /create
+    defaults: { _controller: "IpfFrontBundle:Userproduct:create" }
+    methods:  POST
+
+userproduct_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IpfFrontBundle:Userproduct:edit" }
+
+userproduct_update:
+    path:     /{id}/update
+    defaults: { _controller: "IpfFrontBundle:Userproduct:update" }
+    methods:  [POST, PUT]
+
+userproduct_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IpfFrontBundle:Userproduct:delete" }
+    methods:  [POST, DELETE]

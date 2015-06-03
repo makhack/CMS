@@ -1,6 +1,6 @@
 <?php
 
-namespace Ipf\FrontBundle\Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -75,72 +75,6 @@ class Userproduct
      * })
      */
     private $userproductUser;
-    
-    function getUserproductId() {
-        return $this->userproductId;
-    }
-
-    function getUserproductPrice() {
-        return $this->userproductPrice;
-    }
-
-    function getUserproductSold() {
-        return $this->userproductSold;
-    }
-
-    function getUserproductSaledate() {
-        return $this->userproductSaledate;
-    }
-
-    function getUserproductSolddate() {
-        return $this->userproductSolddate;
-    }
-
-    function getUserproductDescription() {
-        return $this->userproductDescription;
-    }
-
-    function getUserproductProduct() {
-        return $this->userproductProduct;
-    }
-
-    function getUserproductUser() {
-        return $this->userproductUser;
-    }
-
-    function setUserproductId($userproductId) {
-        $this->userproductId = $userproductId;
-    }
-
-    function setUserproductPrice($userproductPrice) {
-        $this->userproductPrice = $userproductPrice;
-    }
-
-    function setUserproductSold($userproductSold) {
-        $this->userproductSold = $userproductSold;
-    }
-
-    function setUserproductSaledate(\DateTime $userproductSaledate) {
-        $this->userproductSaledate = $userproductSaledate;
-    }
-
-    function setUserproductSolddate(\DateTime $userproductSolddate) {
-        $this->userproductSolddate = $userproductSolddate;
-    }
-
-    function setUserproductDescription($userproductDescription) {
-        $this->userproductDescription = $userproductDescription;
-    }
-
-    function setUserproductProduct(\Product $userproductProduct) {
-        $this->userproductProduct = $userproductProduct;
-    }
-
-    function setUserproductUser(\User $userproductUser) {
-        $this->userproductUser = $userproductUser;
-    }
-
-
 
 
 }

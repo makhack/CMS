@@ -9,6 +9,11 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 # app/config/security.yml
 
+services:
+    Ipf.form.type.product:
+        class: Ipf\FrontBundle\Form\Product\ProductType
+        tags:
+            - { name: form.product, alias: product }
 security:
     encoders:
         Ipf\FrontBundle\Entity\User: sha512

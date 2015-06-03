@@ -1,6 +1,6 @@
 <?php
 
-namespace Ipf\FrontBundle\Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,7 +40,7 @@ class Order
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_user_buyer_id", referencedColumnName="user_id", nullable=false)
+     *   @ORM\JoinColumn(name="order_user_buyer_id", referencedColumnName="user_id")
      * })
      */
     private $orderUserBuyer;

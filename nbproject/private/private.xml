@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MakHack/git/cms/src/AppBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/Users/MakHack/git/cms/app/config/routing.yml</file>
-            <file>file:/C:/Users/MakHack/git/cms/app/config/security.yml</file>
-            <file>file:/C:/Users/MakHack/git/cms/.gitignore</file>
-            <file>file:/C:/Users/MakHack/git/cms/app/AppKernel.php</file>
-            <file>file:/C:/Users/MakHack/git/cms/app/config/routing_dev.yml</file>
-            <file>file:/C:/Users/MakHack/git/cms/src/Ipf/FrontBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/Users/MakHack/git/cms/src/Ipf/FrontBundle/Resources/config/routing.yml</file>
-            <file>file:/C:/Users/MakHack/git/cms/src/AppBundle/AppBundle.php</file>
-            <file>file:/C:/Users/MakHack/git/cms/app/config/parameters.yml.dist</file>
+            <file>file:/C:/wamp/www/cms/composer.json</file>
+            <file>file:/C:/wamp/www/cms/src/Ipf/FrontBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp/www/cms/src/Ipf/FrontBundle/Resources/views/layout/layout.html.twig</file>
+            <file>file:/C:/wamp/www/cms/app/config/config.yml</file>
+            <file>file:/C:/wamp/www/cms/app/Resources/views/base.html.twig</file>
+            <file>file:/C:/wamp/www/cms/app/AppKernel.php</file>
+            <file>file:/C:/wamp/www/cms/src/Ipf/FrontBundle/Resources/views/Product/add.html.twig</file>
         </group>
     </open-files>
 </project-private>
