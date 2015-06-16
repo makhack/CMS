@@ -143,7 +143,7 @@ class PictureController extends Controller
     private function createEditForm(Picture $entity)
     {
         $form = $this->createForm(new PictureType(), $entity, array(
-            'action' => $this->generateUrl('picture_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('picture_update', array('id' => $entity->getPictureId())),
             'method' => 'PUT',
         ));
 

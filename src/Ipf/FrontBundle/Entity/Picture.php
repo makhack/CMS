@@ -43,7 +43,7 @@ class Picture
      *
      * @return integer 
      */
-    public function getId()
+    public function getPictureId()
     {
         return $this->pictureId;
     }
