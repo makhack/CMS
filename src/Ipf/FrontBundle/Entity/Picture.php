@@ -31,21 +31,19 @@ class Picture
     /**
      * @var \Product
      *
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="pictures")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="picture_productid", referencedColumnName="product_id")
      * })
      */
     private $pictureProductid;
 
-
-
     /**
      * Get pictureId
      *
      * @return integer 
      */
-    public function getPictureId()
+    public function getId()
     {
         return $this->pictureId;
     }

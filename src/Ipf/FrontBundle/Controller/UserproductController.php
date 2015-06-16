@@ -2,11 +2,13 @@
 
 namespace Ipf\FrontBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Ipf\FrontBundle\Entity\Picture;
 use Ipf\FrontBundle\Entity\Userproduct;
 use Ipf\FrontBundle\Form\UserproductType;
+use Ipf\FrontBundle\Form\PictureType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Userproduct controller.
@@ -36,7 +38,8 @@ class UserproductController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Userproduct();
+        $entity = new Userproduct();        
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -45,7 +48,7 @@ class UserproductController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('userproduct_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('userproduct_show', array('id' => $entity->getUserproductId())));
         }
 
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
@@ -59,7 +62,7 @@ class UserproductController extends Controller
      *
      * @param Userproduct $entity The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Userproduct $entity)
     {
@@ -77,11 +80,23 @@ class UserproductController extends Controller
      * Displays a form to create a new Userproduct entity.
      *
      */
-    public function newAction()
+    public function newAction($id)
     {
         $entity = new Userproduct();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
+        $entity->setUserproductProduct($product);
+       
+        $entity->setUserproductSold(false);
+        $entity->setUserproductValidated(false);
+        
+        
         $form   = $this->createCreateForm($entity);
-
+        
+        $form->get('userproductSaledate')->setData(new \DateTime('now'));
+        
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -97,6 +112,9 @@ class UserproductController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('IpfFrontBundle:Userproduct')->find($id);
+        $em->getRepository('IpfFrontBundle:Product')->findAll();
+        $em->getRepository('IpfFrontBundle:User')->findAll();
+        $em->getRepository('IpfFrontBundle:Category')->findAll();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Userproduct entity.');
@@ -139,7 +157,7 @@ class UserproductController extends Controller
     *
     * @param Userproduct $entity The entity
     *
-    * @return \Symfony\Component\Form\Form The form
+    * @return Form The form
     */
     private function createEditForm(Userproduct $entity)
     {
@@ -211,7 +229,7 @@ class UserproductController extends Controller
      *
      * @param mixed $id The entity id
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm($id)
     {

@@ -1,15 +1,39 @@
-{% extends '::base.html.twig' %}
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
 
+{% block sideCategory %}
+    <div class="col-md-3">
+        <p class="lead">Ulysse</p>
+        <div class="list-group">
+            <a href="{{ path('product') }}" class="list-group-item">All</a>
+            <a href="#" class="list-group-item">Ajouter mon produit</a>
+            <a href="#" class="list-group-item">Category 3</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
 {% block body -%}
+    <div class="col-md-9">
+        <div class="row">
     <h1>Userproduct creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('userproduct') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    {{ form_start(form) }}
+        {{ form_row(form.userproductDescription) }}
+        {{ form_row(form.userproductPrice) }}
+        {{ form_row(form.userproductUser) }}
+        {{ form_row(form.userproductProduct) }}
+        {{ form_row(form.userproductSaledate) }}
+        {{ form_row(form.userproductValidated) }}
+        {{ form_widget(form._token) }}
+        {{ form_row(form.submit) }}
+    {{ form_end(form, {'render_rest': false}) }}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('userproduct') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+        </div>
+    </div>
 {% endblock %}

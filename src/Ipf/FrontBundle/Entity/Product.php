@@ -2,8 +2,9 @@
 
 namespace Ipf\FrontBundle\Entity;
 
-use Ipf\FrontBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ipf\FrontBundle\Entity\Category;
 
 /**
  * Product
@@ -38,7 +39,28 @@ class Product
      * })
      */
     private $productCategory;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="pictureProductid", cascade={"persist"})
+     */
+    private $pictures;
+    
+    function __construct() {
+        $this->pictures = new ArrayCollection();
+    }
 
+    function getPictures() {
+        return $this->pictures;
+    }
+
+    function setPictures(ArrayCollection $pictures) {
+        $this->pictures = $pictures;
+    }
+
+    
 
 
     /**
@@ -96,4 +118,13 @@ class Product
     {
         return $this->productCategory;
     }
+    
+    /**
+    * toString
+    * @return string
+    */
+   public function __toString() 
+   {
+       return $this->getProductName();
+   }
 }

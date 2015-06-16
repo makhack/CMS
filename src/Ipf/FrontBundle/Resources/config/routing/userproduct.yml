@@ -7,7 +7,7 @@ userproduct_show:
     defaults: { _controller: "IpfFrontBundle:Userproduct:show" }
 
 userproduct_new:
-    path:     /new
+    path:     /new/{id}
     defaults: { _controller: "IpfFrontBundle:Userproduct:new" }
 
 userproduct_create:

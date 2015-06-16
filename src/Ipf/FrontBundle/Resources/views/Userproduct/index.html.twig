@@ -4,6 +4,8 @@
     <div class="col-md-3">
         <p class="lead">Ulysse</p>
         <div class="list-group">
+            <a href="#" class="list-group-item">Search</a>
+            <a href="#" class="list-group-item">All</a>
             <a href="#" class="list-group-item">Category 1</a>
             <a href="#" class="list-group-item">Category 2</a>
             <a href="#" class="list-group-item">Category 3</a>
@@ -17,19 +19,20 @@
     <div class="col-md-9">
         <div class="row">
             {% for entity in entities %}
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
-                        <h4>
-                            <a href="{{ path('userproduct_show', { 'id': entity.userproductId }) }}">{{ entity.userproductProduct.productName }}</a>
-                        </h4>
-                        <p>{{ entity.userproductDescription }}</p>
-                        <p>{{ entity.userproductSold }}</p>
+                {% if  entity.userproductSold == false %}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
+                                <h4>
+                                    <a href="{{ path('userproduct_show', { 'id': entity.userproductId }) }}">{{ entity.userproductProduct.productName }}</a>
+                                </h4>
+                                <p>{{ entity.userproductDescription | slice(0, 60) }} ...</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

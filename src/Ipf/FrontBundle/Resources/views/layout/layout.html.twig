@@ -20,16 +20,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{path('userproduct')}}">Ulysse</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Voir mes ventes</a>
+                        <a href="{{path('product')}}">Vendre un produit</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Mon Compte</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
@@ -46,9 +46,7 @@
     {% endblock %}
         <div class="container">
             <div class="row">
-                {% block sideCategory %}            
-
-                {% endblock %}
+                {% block sideCategory %}{% endblock %}
                 {% block body %}{% endblock %}
             </div>
         </div>

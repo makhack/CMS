@@ -1,48 +1,42 @@
-{% extends '::base.html.twig' %}
-
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
+{% block sideCategory %}
+    <div class="col-md-3">
+        <p class="lead">Ulysse</p>
+        <div class="list-group">
+            <a href="#" class="list-group-item">Search</a>
+            <a href="#" class="list-group-item">All</a>
+            <a href="#" class="list-group-item">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
 {% block body -%}
-    <h1>Userproduct</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Userproductid</th>
-                <td>{{ entity.userproductId }}</td>
-            </tr>
-            <tr>
-                <th>Userproductprice</th>
-                <td>{{ entity.userproductPrice }}</td>
-            </tr>
-            <tr>
-                <th>Userproductsold</th>
-                <td>{{ entity.userproductSold }}</td>
-            </tr>
-            <tr>
-                <th>Userproductsaledate</th>
-                <td>{{ entity.userproductSaledate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Userproductsolddate</th>
-                <td>{{ entity.userproductSolddate|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Userproductdescription</th>
-                <td>{{ entity.userproductDescription }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-md-9">
+        <div class="thumbnail">
+            <img class="img-responsive" src="http://placehold.it/1000x300" alt="">
+            <div class="caption-full">
+                <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
+                <h4><a href="#">{{ entity.userproductProduct.productName }}</a>
+                </h4>
+                <p>{{ entity.userproductSolddate|date('Y-m-d H:i:s') }}</p>
+                <p>{{ entity.userproductDescription }}</p>
+                <p>Category : {{ entity.userproductProduct.productCategory.categoryName }}</p>
+                <p>Vendeur : {{ entity.userproductUser.username }}</p>
+            </div>
+        </div>
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('userproduct') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('userproduct_edit', { 'id': entity.userproductId }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('userproduct') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
 {% endblock %}
