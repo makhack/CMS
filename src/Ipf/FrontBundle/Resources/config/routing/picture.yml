@@ -1,0 +1,30 @@
+picture:
+    path:     /
+    defaults: { _controller: "IpfFrontBundle:Picture:index" }
+
+picture_show:
+    path:     /{id}/show
+    defaults: { _controller: "IpfFrontBundle:Picture:show" }
+
+picture_new:
+    path:     /new
+    defaults: { _controller: "IpfFrontBundle:Picture:new" }
+
+picture_create:
+    path:     /create
+    defaults: { _controller: "IpfFrontBundle:Picture:create" }
+    methods:  POST
+
+picture_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IpfFrontBundle:Picture:edit" }
+
+picture_update:
+    path:     /{id}/update
+    defaults: { _controller: "IpfFrontBundle:Picture:update" }
+    methods:  [POST, PUT]
+
+picture_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IpfFrontBundle:Picture:delete" }
+    methods:  [POST, DELETE]

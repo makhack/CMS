@@ -13,7 +13,12 @@ services:
     Ipf.form.type.product:
         class: Ipf\FrontBundle\Form\Product\ProductType
         tags:
-            - { name: form.product, alias: product }
+            - { name: form.type, alias: product }
+    Ipf.form.type.picture:
+        class: Ipf\FrontBundle\Form\Product\PictureType
+        tags:
+            - { name: form.type, alias: picture }
+
 security:
     encoders:
         Ipf\FrontBundle\Entity\User: sha512

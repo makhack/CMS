@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 class UserproductType extends AbstractType
 {
     /**
@@ -21,8 +24,24 @@ class UserproductType extends AbstractType
             ->add('userproductSolddate')
             ->add('userproductDescription')
             ->add('userproductProduct')
+//            ->add('userproductProduct','hidden', array(
+//                'data_class' => '\Ipf\FrontBundle\Entity\Product'
+//            ))
             ->add('userproductUser')
+            
         ;
+        
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            $product = $event->getData();
+            $form = $event->getForm();
+
+            // vérifie si l'objet Product est "nouveau"
+            // Si aucune donnée n'est passée au formulaire, la donnée est "null".
+            // Ce doit être considéré comme un nouveau "Product"
+            if (!$product || null === $product->getUserproductId()) {
+                $form->add('userproductValidated','hidden');
+            }
+        });
     }
     
     /**

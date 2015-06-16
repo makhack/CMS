@@ -2,7 +2,10 @@
 
 namespace Ipf\FrontBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Ipf\FrontBundle\Entity\Product;
+use Ipf\FrontBundle\Entity\User;
 
 /**
  * Userproduct
@@ -36,14 +39,14 @@ class Userproduct
     private $userproductSold;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="userProduct_saleDate", type="datetime", nullable=false)
      */
     private $userproductSaledate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="userProduct_soldDate", type="datetime", nullable=true)
      */
@@ -58,13 +61,13 @@ class Userproduct
 
     /**
      * @var boolean
-     *
-     * @ORM\Column(name="userProduct_validated", type="boolean", nullable=false)
+     * 
+     * @ORM\Column(name="userProduct_validated", type="boolean", nullable=true)
      */
     private $userproductValidated;
 
     /**
-     * @var \Product
+     * @var Product
      *
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumns({
@@ -74,7 +77,7 @@ class Userproduct
     private $userproductProduct;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -82,7 +85,6 @@ class Userproduct
      * })
      */
     private $userproductUser;
-
 
 
     /**
@@ -144,7 +146,7 @@ class Userproduct
     /**
      * Set userproductSaledate
      *
-     * @param \DateTime $userproductSaledate
+     * @param DateTime $userproductSaledate
      * @return Userproduct
      */
     public function setUserproductSaledate($userproductSaledate)
@@ -157,7 +159,7 @@ class Userproduct
     /**
      * Get userproductSaledate
      *
-     * @return \DateTime 
+     * @return DateTime 
      */
     public function getUserproductSaledate()
     {
@@ -167,7 +169,7 @@ class Userproduct
     /**
      * Set userproductSolddate
      *
-     * @param \DateTime $userproductSolddate
+     * @param DateTime $userproductSolddate
      * @return Userproduct
      */
     public function setUserproductSolddate($userproductSolddate)
@@ -180,7 +182,7 @@ class Userproduct
     /**
      * Get userproductSolddate
      *
-     * @return \DateTime 
+     * @return DateTime 
      */
     public function getUserproductSolddate()
     {
@@ -236,10 +238,10 @@ class Userproduct
     /**
      * Set userproductProduct
      *
-     * @param \Ipf\FrontBundle\Entity\Product $userproductProduct
+     * @param Product $userproductProduct
      * @return Userproduct
      */
-    public function setUserproductProduct(\Ipf\FrontBundle\Entity\Product $userproductProduct = null)
+    public function setUserproductProduct(Product $userproductProduct = null)
     {
         $this->userproductProduct = $userproductProduct;
 
@@ -249,7 +251,7 @@ class Userproduct
     /**
      * Get userproductProduct
      *
-     * @return \Ipf\FrontBundle\Entity\Product 
+     * @return Product 
      */
     public function getUserproductProduct()
     {
@@ -259,10 +261,10 @@ class Userproduct
     /**
      * Set userproductUser
      *
-     * @param \Ipf\FrontBundle\Entity\User $userproductUser
+     * @param User $userproductUser
      * @return Userproduct
      */
-    public function setUserproductUser(\Ipf\FrontBundle\Entity\User $userproductUser = null)
+    public function setUserproductUser(User $userproductUser = null)
     {
         $this->userproductUser = $userproductUser;
 
@@ -272,7 +274,7 @@ class Userproduct
     /**
      * Get userproductUser
      *
-     * @return \Ipf\FrontBundle\Entity\User 
+     * @return User 
      */
     public function getUserproductUser()
     {
