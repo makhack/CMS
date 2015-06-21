@@ -5,6 +5,7 @@ namespace Ipf\FrontBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ipf\FrontBundle\Entity\Category;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -25,6 +26,7 @@ class Product
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="product_name", type="string", length=255, nullable=false)
      */
@@ -32,6 +34,7 @@ class Product
 
     /**
      * @var Category
+     * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({

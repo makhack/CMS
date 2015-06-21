@@ -25,6 +25,7 @@ class Picture
     
     /**
      * @Assert\File(maxSize="6000000")
+     * @Assert\NotBlank()
      */
     public $file;
 
@@ -38,7 +39,7 @@ class Picture
     /**
      * @var \Product
      *
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="pictures")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="pictures", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="picture_productid", referencedColumnName="product_id")
      * })
@@ -154,4 +155,8 @@ class Picture
     {
         return $this->pictureProductid;
     }
+    
+//    public function __toString() {
+//        return $this->file;
+//    }
 }
