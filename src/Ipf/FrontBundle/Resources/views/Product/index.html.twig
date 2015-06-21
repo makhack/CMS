@@ -2,7 +2,7 @@
 
 {% block sideCategory %}
     <div class="col-md-3">
-        <p class="lead">Ulysse</p>
+        <p class="lead">Vendre un produits </p>
         <div class="list-group">
             <a href="{{ path('product') }}" class="list-group-item">All</a>
             <a href="#" class="list-group-item">Ajouter mon produit</a>
@@ -21,7 +21,7 @@
                 <div class="thumbnail">                        
                     {% for picture in entity.pictures %}
                         {% if loop.index  < 2 %}
-                            <img src="{{ picture.pictureUrl }}" alt="">
+                            <img src="{{ asset(picture.pictureUrl) }}" alt="">
                         {% endif %}
                     {% endfor %}
                     

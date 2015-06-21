@@ -39,7 +39,7 @@ class UserproductType extends AbstractType
             // Si aucune donnée n'est passée au formulaire, la donnée est "null".
             // Ce doit être considéré comme un nouveau "Product"
             if (!$product || null === $product->getUserproductId()) {
-                $form->add('userproductValidated','hidden');
+                $form->add('userproductValidated');
             }
         });
     }

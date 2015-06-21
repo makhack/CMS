@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Ulysse for you !{% endblock %}</title>
-        {% stylesheets 'bundles/Ipf/css/*' 'bundles/Ipf/css/bootstrap.css' filter='cssrewrite' %}
+        {% stylesheets 'bundles/Ipf/css/*' 'bundles/Ipf/css/bootstrap.css' 'bundles/Ipf/css/mycss.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />

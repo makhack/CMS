@@ -2,10 +2,10 @@
 
 {% block sideCategory %}
     <div class="col-md-3">
-        <p class="lead">Ulysse</p>
+        <p class="lead">Tout les produits</p>
         <div class="list-group">
             <a href="#" class="list-group-item">Search</a>
-            <a href="#" class="list-group-item">All</a>
+            <a href="#" class="list-group-item">Tous</a>
             <a href="#" class="list-group-item">Category 1</a>
             <a href="#" class="list-group-item">Category 2</a>
             <a href="#" class="list-group-item">Category 3</a>
@@ -22,7 +22,11 @@
                 {% if  entity.userproductSold == false %}
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            {% for picture in entity.userproductProduct.pictures %}
+                                {% if loop.index  < 2 %}
+                                    <img src="{{ asset(picture.pictureUrl) }}" alt="">
+                                {% endif %}
+                            {% endfor %}
                             <div class="caption">
                                 <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
                                 <h4>

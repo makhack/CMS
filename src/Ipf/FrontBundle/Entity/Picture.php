@@ -4,6 +4,8 @@ namespace Ipf\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Picture
  *
@@ -20,6 +22,11 @@ class Picture
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $pictureId;
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
 
     /**
      * @var string
@@ -38,6 +45,60 @@ class Picture
      */
     private $pictureProductid;
 
+     public function getAbsolutePath()
+    {
+        return null === $this->pictureUrl ? null : $this->getUploadRootDir().'/'.$this->pictureUrl;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->pictureUrl ? null : $this->getUploadDir().'/'.$this->pictureUrl;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'bundles/Ipf/images';
+    }
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        var_dump($this->file);
+        if (null === $this->file) {
+            return;
+        }
+
+    
+        $imageName = sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension();
+    
+        
+        
+        
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        $this->file->move($this->getUploadRootDir(), $imageName );
+
+        // définit la propriété « path » comme étant le nom de fichier où vous
+        // avez stocké le fichier
+        $format = '%s/%s';
+        var_dump(sprintf($format, $this->getUploadDir(), $imageName ));
+        $this->setPictureUrl(sprintf($format, $this->getUploadDir(), $imageName));
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
+    }
+    // GETS / SETTEURS
     /**
      * Get pictureId
      *

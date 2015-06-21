@@ -36,15 +36,18 @@ class PictureController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Picture();
+        
+        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->upload();
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('picture_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('picture_show', array('id' => $entity->getPictureId())));
         }
 
         return $this->render('IpfFrontBundle:Picture:new.html.twig', array(
