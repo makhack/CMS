@@ -1,3 +1,11 @@
+ipf_front_tag:
+    resource: "@IpfFrontBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag
+
+ipf_front_producttag:
+    resource: "@IpfFrontBundle/Resources/config/routing/producttag.yml"
+    prefix:   /producttag
+
 ipf_front_picture:
     resource: "@IpfFrontBundle/Resources/config/routing/picture.yml"
     prefix:   /picture

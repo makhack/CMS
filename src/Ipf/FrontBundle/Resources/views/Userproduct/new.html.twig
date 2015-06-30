@@ -17,9 +17,10 @@
     <div class="col-md-9">
         <div class="row">
     <h1>Userproduct creation</h1>
-
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
     {{ form_start(form) }}
-        {{ form_row(form.userproductDescription) }}
+        <label>Description du produit</label>
+        {{ form_widget(form.userproductDescription) }}
         {{ form_row(form.userproductPrice) }}
         {{ form_row(form.userproductUser) }}
         {{ form_row(form.userproductProduct) }}

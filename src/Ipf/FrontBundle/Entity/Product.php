@@ -50,11 +50,21 @@ class Product
      */
     private $pictures;
     
+    private $tags;
 
     function __construct() {
         $this->pictures = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
-
+    
+    function setTags($tags){
+        $this->tags = is_array($tags) ? new ArrayCollection($tags) : $tags;
+    }
+    
+    function getTags(){
+        return $this->tags;
+    }
+    
     function getPictures() {
         return $this->pictures;
     }
