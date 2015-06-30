@@ -5,6 +5,8 @@ namespace Ipf\FrontBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class ProductType extends AbstractType
 {
@@ -16,10 +18,23 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('productName')
-            ->add('productDescription')
-            ->add('productValidated')
             ->add('productCategory')
-        ;
+            ->add('pictures', 'collection', array(
+                'type'         => new PictureType(),
+                'by_reference' => true,
+                'allow_add'    => true,
+                'allow_delete' => true
+            ))
+
+            ->addEventListener(FormEvents::POST_SUBMIT , function(FormEvent $event) {
+                $product = $event->getData();
+                $form = $event->getForm();
+//                var_dump($form->getData()->getPictures());
+                
+
+                
+            });
+
     }
     
     /**

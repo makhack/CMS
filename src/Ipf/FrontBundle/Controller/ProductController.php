@@ -2,11 +2,13 @@
 
 namespace Ipf\FrontBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Ipf\FrontBundle\Entity\Picture;
 use Ipf\FrontBundle\Entity\Product;
+use Ipf\FrontBundle\Form\PictureType;
 use Ipf\FrontBundle\Form\ProductType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Product controller.
@@ -36,15 +38,25 @@ class ProductController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Product();
+        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+//        var_dump($entity->getPictures());
 
         if ($form->isValid()) {
+//            var_dump($form->getData()->getPictures());
+//            die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            
+            foreach($entity->getPictures() as $picture){
+                $picture->setPictureProductid($entity);
+                $em->persist($picture);
+                $em->flush();                
+            }
 
-            return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getProductId())));
         }
 
         return $this->render('IpfFrontBundle:Product:new.html.twig', array(
@@ -58,7 +70,7 @@ class ProductController extends Controller
      *
      * @param Product $entity The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Product $entity)
     {
@@ -138,7 +150,7 @@ class ProductController extends Controller
     *
     * @param Product $entity The entity
     *
-    * @return \Symfony\Component\Form\Form The form
+    * @return Form The form
     */
     private function createEditForm(Product $entity)
     {
@@ -210,7 +222,7 @@ class ProductController extends Controller
      *
      * @param mixed $id The entity id
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm($id)
     {
