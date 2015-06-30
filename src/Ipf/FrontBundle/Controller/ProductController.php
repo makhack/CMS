@@ -54,9 +54,8 @@ class ProductController extends Controller
             }
             
             foreach($entity->getTags() as $tag){
-                $tag->setTagName(strtolower($tag->getTagName()));
-                var_dump($tag);
-
+                $tag->setTagName($tag->getTagName());
+                
                 $tagExist = $em->getRepository('IpfFrontBundle:Tag')->findOneBy(array('tagName'=> $tag->getTagName()));
                 $productTag = new Producttag();
 
@@ -119,7 +118,6 @@ class ProductController extends Controller
     {
         $entity = new Product();
         $form   = $this->createCreateForm($entity);
-
         return $this->render('IpfFrontBundle:Product:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),

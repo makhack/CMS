@@ -17,7 +17,11 @@
 {% block body -%}
     <div class="col-md-9">
         <div class="thumbnail">
-            <img class="img-responsive" src="http://placehold.it/1000x300" alt="">
+            {% for picture in entity.userproductProduct.pictures %}
+                {% if loop.index  < 2 %}
+                    <img class="img-responsive" src="{{ asset(picture.pictureUrl) }}" alt="">
+                {% endif %}
+            {% endfor %}
             <div class="caption-full">
                 <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
                 <h4><a href="#">{{ entity.userproductProduct.productName }}</a>
