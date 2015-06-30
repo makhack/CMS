@@ -59,8 +59,8 @@ class Product
         return $this->pictures;
     }
 
-    function setPictures(ArrayCollection $pictures) {
-        $this->pictures = $pictures;
+    function setPictures($pictures) {
+        $this->pictures = is_array($pictures) ? new ArrayCollection($pictures) : $pictures;
     }
 
     

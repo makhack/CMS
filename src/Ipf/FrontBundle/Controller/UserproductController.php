@@ -2,10 +2,11 @@
 
 namespace Ipf\FrontBundle\Controller;
 
+use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Ipf\FrontBundle\Entity\Picture;
 use Ipf\FrontBundle\Entity\Userproduct;
 use Ipf\FrontBundle\Form\UserproductType;
-use Ipf\FrontBundle\Form\PictureType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,15 +39,20 @@ class UserproductController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Userproduct();        
+        $entity = new Userproduct();
 
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            foreach($entity->getUserproductProduct()->getPictures() as $picture){
+                $picture->setPictureProductid($entity->getUserproductProduct());
+                $em->persist($picture);
+                $em->flush();                
+            }
 
             return $this->redirect($this->generateUrl('userproduct_show', array('id' => $entity->getUserproductId())));
         }
@@ -82,20 +88,21 @@ class UserproductController extends Controller
      */
     public function newAction($id)
     {
+        
         $entity = new Userproduct();
         
         $em = $this->getDoctrine()->getManager();
         
         $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
+        
         $entity->setUserproductProduct($product);
-       
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
         
         
         $form   = $this->createCreateForm($entity);
         
-        $form->get('userproductSaledate')->setData(new \DateTime('now'));
+        $form->get('userproductSaledate')->setData(new DateTime('now'));
         
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
