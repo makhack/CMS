@@ -37,10 +37,9 @@ class PictureController extends Controller
     {
         $entity = new Picture();
         
-        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-        var_dump($form->getData());
+        var_dump($entity);
 
         if ($form->isValid()) {
             $entity->upload();

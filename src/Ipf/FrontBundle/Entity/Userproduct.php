@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Ipf\FrontBundle\Entity\Product;
 use Ipf\FrontBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Userproduct
@@ -69,7 +70,7 @@ class Userproduct
     /**
      * @var Product
      *
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="userProduct_product_id", referencedColumnName="product_id")
      * })
@@ -85,8 +86,7 @@ class Userproduct
      * })
      */
     private $userproductUser;
-
-
+    
     /**
      * Get userproductId
      *

@@ -23,10 +23,10 @@ class UserproductType extends AbstractType
             ->add('userproductSaledate')
             ->add('userproductSolddate')
             ->add('userproductDescription')
-            ->add('userproductProduct')
 //            ->add('userproductProduct','hidden', array(
 //                'data_class' => '\Ipf\FrontBundle\Entity\Product'
 //            ))
+            ->add('userproductProduct', new ProductType())
             ->add('userproductUser')
             
         ;

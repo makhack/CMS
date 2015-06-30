@@ -16,8 +16,8 @@ class PictureType extends AbstractType
     {
         $builder
             ->add('file')
-            
-            ->add('pictureProductid', new ProductType())
+            ->getForm()
+//            ->add('pictureProductid', new ProductType())
         ;
     }
     

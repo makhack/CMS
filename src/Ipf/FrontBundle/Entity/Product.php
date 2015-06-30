@@ -2,9 +2,10 @@
 
 namespace Ipf\FrontBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Ipf\FrontBundle\Entity\Category;
+use Ipf\FrontBundle\Entity\Picture;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -44,13 +45,12 @@ class Product
     private $productCategory;
     
     /**
-     *
      * @var type 
-     * 
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="pictureProductid", cascade={"persist"})
      */
     private $pictures;
     
+
     function __construct() {
         $this->pictures = new ArrayCollection();
     }
@@ -68,7 +68,6 @@ class Product
 
     /**
      * Get productId
-     *
      * @return integer 
      */
     public function getProductId()
