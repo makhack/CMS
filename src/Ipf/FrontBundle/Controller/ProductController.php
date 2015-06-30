@@ -2,9 +2,8 @@
 
 namespace Ipf\FrontBundle\Controller;
 
-use Ipf\FrontBundle\Entity\Picture;
 use Ipf\FrontBundle\Entity\Product;
-use Ipf\FrontBundle\Form\PictureType;
+use Ipf\FrontBundle\Entity\Producttag;
 use Ipf\FrontBundle\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
@@ -41,8 +40,6 @@ class ProductController extends Controller
         
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-//        var_dump($entity->getPictures());
-
         if ($form->isValid()) {
 //            var_dump($form->getData()->getPictures());
 //            die();
@@ -54,6 +51,35 @@ class ProductController extends Controller
                 $picture->setPictureProductid($entity);
                 $em->persist($picture);
                 $em->flush();                
+            }
+            
+            foreach($entity->getTags() as $tag){
+                $tag->setTagName($tag->getTagName());
+                
+                $tagExist = $em->getRepository('IpfFrontBundle:Tag')->findOneBy(array('tagName'=> $tag->getTagName()));
+                $productTag = new Producttag();
+
+                if(!$tagExist){
+                    $em->persist($tag);
+                    $em->flush();
+                    $productTag->setProducttagTag($tag);
+                    $productTag->setProducttagProduct($entity);
+                    var_dump($tagExist);
+                    die;
+                }else{
+                    $productTag->setProducttagTag($tagExist);
+                    $productTag->setProducttagProduct($entity);
+                    var_dump($tagExist);
+                    die;
+
+                }
+                $em->persist($productTag);
+                $em->flush();
+
+                
+
+                var_dump($productTag);
+                die();
             }
 
             return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getProductId())));
@@ -92,7 +118,6 @@ class ProductController extends Controller
     {
         $entity = new Product();
         $form   = $this->createCreateForm($entity);
-
         return $this->render('IpfFrontBundle:Product:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),

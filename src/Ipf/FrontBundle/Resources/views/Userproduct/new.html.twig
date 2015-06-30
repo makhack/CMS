@@ -16,9 +16,12 @@
 {% block body -%}
     <div class="col-md-9">
         <div class="row">
-    <h1>Userproduct creation</h1>
+    <h1>Ajouter un nouveau produit</h1>
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<div class="well">
     {{ form_start(form) }}
-        {{ form_row(form.userproductDescription) }}
+        <label>Description du produit</label>
+        {{ form_widget(form.userproductDescription) }}
         {{ form_row(form.userproductPrice) }}
         {{ form_row(form.userproductUser) }}
         {{ form_row(form.userproductProduct) }}
@@ -27,6 +30,7 @@
         {{ form_widget(form._token) }}
         {{ form_row(form.submit) }}
     {{ form_end(form, {'render_rest': false}) }}
+</div>
     <ul class="record_actions">
         <li>
             <a href="{{ path('userproduct') }}">
@@ -41,13 +45,18 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 {# Voici le script en question : #}
-<script type="text/javascript">
+<script type="text/javascript"> 
   $(document).ready(function() {
+    
+    multiContainer('div#ipf_frontbundle_userproduct_userproductProduct_tags','tag');
+    multiContainer('div#ipf_frontbundle_userproduct_userproductProduct_pictures','picture');
+    function multiContainer($prototypeChamp,$name){
+
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#ipf_frontbundle_userproduct_userproductProduct_pictures_0');
+    var $container = $($prototypeChamp);
 
     // On ajoute un lien pour ajouter une nouvelle catégorie
-    var $addLink = $('<a href="#" id="add_product" class="btn btn-default">Ajouter un produit</a>');
+    var $addLink = $('<a href="#" id="add_product" class="btn btn-default">Ajouter un '+$name+'</a>');
     $container.append($addLink);
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
@@ -75,7 +84,7 @@
       // Dans le contenu de l'attribut « data-prototype », on remplace :
       // - le texte "__name__label__" qu'il contient par le label du champ
       // - le texte "__name__" qu'il contient par le numéro du champ
-      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Catégorie n°' + (index+1))
+      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, $name + ' n°' + (index+1))
           .replace(/__name__/g, index));
 
       // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
@@ -103,5 +112,7 @@
         return false;
       });
     }
+    }
   });
+  </script>
 {% endblock %}

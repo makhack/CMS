@@ -91,7 +91,6 @@ class Picture
     public function upload()
     {
         // la propriété « file » peut être vide si le champ n'est pas requis
-        var_dump($this->file);
         if (null === $this->file) {
             return;
         }

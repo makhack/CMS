@@ -48,7 +48,7 @@ class Tag
      */
     public function setTagName($tagName)
     {
-        $this->tagName = $tagName;
+        $this->tagName = strtolower($tagName);
 
         return $this;
     }

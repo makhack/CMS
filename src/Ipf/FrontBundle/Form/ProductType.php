@@ -25,6 +25,11 @@ class ProductType extends AbstractType
                 'allow_add'    => true,
                 'allow_delete' => true
             ))
+                ->add('tags','collection',array(
+                    'type'=>new TagType,
+                    'allow_add'    => true,
+                    'allow_delete' => true
+                    ))
 
             ->addEventListener(FormEvents::POST_SUBMIT , function(FormEvent $event) {
                 $product = $event->getData();

@@ -2,13 +2,15 @@
 
 namespace Ipf\FrontBundle\Controller;
 
-use Ipf\FrontBundle\Entity\Picture;
+use DateTime;
+use Ipf\FrontBundle\Entity\Product;
 use Ipf\FrontBundle\Entity\Userproduct;
 use Ipf\FrontBundle\Form\UserproductType;
-use Ipf\FrontBundle\Form\PictureType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Ipf\FrontBundle\Entity\Producttag;
+use Ipf\FrontBundle\Entity\Tag;
 
 /**
  * Userproduct controller.
@@ -38,15 +40,40 @@ class UserproductController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Userproduct();        
+        $entity = new Userproduct();
 
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            
+            foreach($entity->getUserproductProduct()->getPictures() as $picture){
+                $picture->setPictureProductid($entity->getUserproductProduct());
+                $em->persist($picture);
+                $em->flush();                
+            }
+            
+            foreach($entity->getUserproductProduct()->getTags() as $tag){
+                $tag->setTagName($tag->getTagName());
+                
+                $tagExist = $em->getRepository('IpfFrontBundle:Tag')->findOneBy(array('tagName'=> $tag->getTagName()));
+                $productTag = new Producttag();
+
+                if(!$tagExist){
+                    $em->persist($tag);
+                    $em->flush();
+                    $productTag->setProducttagTag($tag);
+                    $productTag->setProducttagProduct($entity->getUserproductProduct());
+
+                }else{
+                    $productTag->setProducttagTag($tagExist);
+                    $productTag->setProducttagProduct($entity->getUserproductProduct());
+                }
+                $em->persist($productTag);
+                $em->flush();
+            }
 
             return $this->redirect($this->generateUrl('userproduct_show', array('id' => $entity->getUserproductId())));
         }
@@ -82,20 +109,22 @@ class UserproductController extends Controller
      */
     public function newAction($id)
     {
+        
         $entity = new Userproduct();
+        $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
         
         $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
+        $product->setPictures(array());
         $entity->setUserproductProduct($product);
-       
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
         
         
         $form   = $this->createCreateForm($entity);
         
-        $form->get('userproductSaledate')->setData(new \DateTime('now'));
+        $form->get('userproductSaledate')->setData(new DateTime('now'));
         
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
