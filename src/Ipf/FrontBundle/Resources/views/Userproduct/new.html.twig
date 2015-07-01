@@ -17,20 +17,21 @@
     <div class="col-md-9">
         <div class="row">
     <h1>Ajouter un nouveau produit</h1>
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
-<div class="well">
-    {{ form_start(form) }}
-        <label>Description du produit</label>
-        {{ form_widget(form.userproductDescription) }}
-        {{ form_row(form.userproductPrice) }}
-        {{ form_row(form.userproductUser) }}
-        {{ form_row(form.userproductProduct) }}
-        {{ form_row(form.userproductSaledate) }}
-        {{ form_row(form.userproductValidated) }}
-        {{ form_widget(form._token) }}
-        {{ form_row(form.submit) }}
-    {{ form_end(form, {'render_rest': false}) }}
-</div>
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    <div class="well">
+        {{ form_start(form) }}
+            <label>Description du produit</label>
+            {{ form_widget(form.userproductDescription) }}
+            {{ form_row(form.userproductPrice) }}
+            {{ form_row(form.userproductUser) }}
+            {{ form_row(form.userproductProduct) }}
+            {{ form_row(form.userproductSaledate) }}
+            {{ form_row(form.userproductValidated) }}
+            {{ form_widget(form._token) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+
     <ul class="record_actions">
         <li>
             <a href="{{ path('userproduct') }}">

@@ -107,25 +107,25 @@ class UserproductController extends Controller
      * Displays a form to create a new Userproduct entity.
      *
      */
-    public function newAction($id)
+    public function newAction(Request $request)
     {
-        
         $entity = new Userproduct();
+
+
         $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
-        
-        $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
-        $product->setPictures(array());
+        if($request->get('id')){
+            var_dump($request->get('id'));
+            $product = $em->getRepository('IpfFrontBundle:Product')->find($request->get('id'));
+            $product->setPictures(array());
+        }
         $entity->setUserproductProduct($product);
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
-        
-        
+        $entity->setUserproductSaledate(new DateTime('now'));
         $form   = $this->createCreateForm($entity);
-        
-        $form->get('userproductSaledate')->setData(new DateTime('now'));
-        
+
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
