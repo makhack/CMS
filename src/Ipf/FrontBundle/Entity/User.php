@@ -22,4 +22,14 @@ class User extends BaseUser
      */
     private $userId;
 
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 }

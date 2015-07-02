@@ -23,13 +23,22 @@ class UserproductController extends Controller
      * Lists all Userproduct entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        
+        var_dump($request->get('id'));
+        if($request->get('id')){
+            $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByCategory($category);
+        }
+        else{
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        }
+        
         $em->getRepository('IpfFrontBundle:product')->findAll();
         $em->getRepository('IpfFrontBundle:user')->findAll();
+        
         return $this->render('IpfFrontBundle:Userproduct:index.html.twig', array(
             'entities' => $entities,
         ));

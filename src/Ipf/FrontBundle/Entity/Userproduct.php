@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Userproduct
  *
  * @ORM\Table(name="userproduct", indexes={@ORM\Index(name="FK_userproduct_user_idx", columns={"userProduct_user_id"}), @ORM\Index(name="FK_userproduct_product_idx", columns={"userProduct_product_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ipf\FrontBundle\Entity\UserProductRepository")
  */
 class Userproduct
 {

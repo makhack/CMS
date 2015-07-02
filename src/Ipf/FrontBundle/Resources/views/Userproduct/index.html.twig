@@ -5,10 +5,8 @@
         <p class="lead">Tout les produits</p>
         <div class="list-group">
             <a href="#" class="list-group-item">Search</a>
-            <a href="#" class="list-group-item">Tous</a>
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="{{path('userproduct')}}" class="list-group-item">Tous</a>
+            {{ render(controller('IpfFrontBundle:Category:list')) }}
         </div>
     </div>
     <br/>
@@ -18,26 +16,30 @@
 {% block body -%}
     <div class="col-md-9">
         <div class="row">
-            {% for entity in entities %}
-                {% if  entity.userproductSold == false %}
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            {% for picture in entity.userproductProduct.pictures %}
-                                {% if loop.index  < 2 %}
-                                    <img src="{{ asset(picture.pictureUrl) }}" alt="">
-                                {% endif %}
-                            {% endfor %}
-                            <div class="caption">
-                                <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
-                                <h4>
-                                    <a href="{{ path('userproduct_show', { 'id': entity.userproductId }) }}">{{ entity.userproductProduct.productName }}</a>
-                                </h4>
-                                <p>{{ entity.userproductDescription | slice(0, 60) }} ...</p>
+            {% if entities %}
+                {% for entity in entities %}
+                    {% if  entity.userproductSold == false %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div id="thumb" class="thumbnail">
+                                {% for picture in entity.userproductProduct.pictures %}
+                                    {% if loop.index  < 2 %}
+                                        <img src="{{ asset(picture.pictureUrl) }}" alt="">
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="caption">
+                                    <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
+                                    <h4>
+                                        <a href="{{ path('userproduct_show', { 'id': entity.userproductId }) }}">{{ entity.userproductProduct.productName }}</a>
+                                    </h4>
+                                    <p>{{ entity.userproductDescription | slice(0, 60) }} ...</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                Aucuns produits !
+            {% endif %}
         </div>
     </div>
     {% endblock %}

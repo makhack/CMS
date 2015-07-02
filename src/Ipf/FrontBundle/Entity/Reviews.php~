@@ -46,4 +46,83 @@ class Reviews
     private $reviewsUser;
 
 
+
+    /**
+     * Get reviewsId
+     *
+     * @return integer 
+     */
+    public function getReviewsId()
+    {
+        return $this->reviewsId;
+    }
+
+    /**
+     * Set reviewsDescription
+     *
+     * @param string $reviewsDescription
+     * @return Reviews
+     */
+    public function setReviewsDescription($reviewsDescription)
+    {
+        $this->reviewsDescription = $reviewsDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewsDescription
+     *
+     * @return string 
+     */
+    public function getReviewsDescription()
+    {
+        return $this->reviewsDescription;
+    }
+
+    /**
+     * Set reviewsMark
+     *
+     * @param boolean $reviewsMark
+     * @return Reviews
+     */
+    public function setReviewsMark($reviewsMark)
+    {
+        $this->reviewsMark = $reviewsMark;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewsMark
+     *
+     * @return boolean 
+     */
+    public function getReviewsMark()
+    {
+        return $this->reviewsMark;
+    }
+
+    /**
+     * Set reviewsUser
+     *
+     * @param \Ipf\FrontBundle\Entity\User $reviewsUser
+     * @return Reviews
+     */
+    public function setReviewsUser(\Ipf\FrontBundle\Entity\User $reviewsUser = null)
+    {
+        $this->reviewsUser = $reviewsUser;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewsUser
+     *
+     * @return \Ipf\FrontBundle\Entity\User 
+     */
+    public function getReviewsUser()
+    {
+        return $this->reviewsUser;
+    }
 }

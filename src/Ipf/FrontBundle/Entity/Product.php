@@ -139,4 +139,27 @@ class Product
    {
        return $this->getProductName();
    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Ipf\FrontBundle\Entity\Picture $pictures
+     * @return Product
+     */
+    public function addPicture(\Ipf\FrontBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Ipf\FrontBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\Ipf\FrontBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>{% block title %}Ulysse for you !{% endblock %}</title>
         {% stylesheets 'bundles/Ipf/css/*' 'bundles/Ipf/css/bootstrap.css' 'bundles/Ipf/css/mycss.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
@@ -56,7 +56,8 @@
                 {% block body %}{% endblock %}
             </div>
         </div>
-        {% javascripts '@IpfFrontBundle/Resources/public/js/bootstrap.js'%}
+        {% javascripts  
+                        '@IpfFrontBundle/Resources/public/js/jquery-1.11.3.js'%}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
     </body>

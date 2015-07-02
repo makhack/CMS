@@ -5,8 +5,8 @@
         <p class="lead">Ulysse</p>
         <div class="list-group">
             <a href="{{ path('product') }}" class="list-group-item">All</a>
-            <a href="#" class="list-group-item">Ajouter mon produit</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="{{path('userproduct_new')}}" class="list-group-item">Ajouter mon produit</a>
+            {{ render(controller('IpfFrontBundle:Category:list')) }}
         </div>
     </div>
     <br/>

@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProductController extends Controller
 {
-
     /**
      * Lists all Product entities.
      *
