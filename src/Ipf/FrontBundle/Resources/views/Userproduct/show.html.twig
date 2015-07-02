@@ -1,0 +1,46 @@
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
+{% block sideCategory %}
+    <div class="col-md-3">
+        <p class="lead">Ulysse</p>
+        <div class="list-group">
+            <a href="#" class="list-group-item">Search</a>
+            <a href="#" class="list-group-item">All</a>
+            <a href="#" class="list-group-item">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
+{% block body -%}
+    <div class="col-md-9">
+        <div class="thumbnail">
+            {% for picture in entity.userproductProduct.pictures %}
+                {% if loop.index  < 2 %}
+                    <img class="img-responsive" src="{{ asset(picture.pictureUrl) }}" alt="">
+                {% endif %}
+            {% endfor %}
+            <div class="caption-full">
+                <h4 class="pull-right">€{{ entity.userproductPrice }}</h4>
+                <h4><a href="#">{{ entity.userproductProduct.productName }}</a>
+                </h4>
+                <p>{{ entity.userproductSolddate|date('Y-m-d H:i:s') }}</p>
+                <p>{{ entity.userproductDescription }}</p>
+                <p>Category : {{ entity.userproductProduct.productCategory.categoryName }}</p>
+                <p>Vendeur : {{ entity.userproductUser.username }}</p>
+            </div>
+        </div>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('userproduct') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+{% endblock %}

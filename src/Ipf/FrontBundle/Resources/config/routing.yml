@@ -1,0 +1,24 @@
+ipf_front_tag:
+    resource: "@IpfFrontBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag
+
+ipf_front_producttag:
+    resource: "@IpfFrontBundle/Resources/config/routing/producttag.yml"
+    prefix:   /producttag
+
+ipf_front_picture:
+    resource: "@IpfFrontBundle/Resources/config/routing/picture.yml"
+    prefix:   /picture
+
+ipf_front_userproduct:
+    resource: "@IpfFrontBundle/Resources/config/routing/userproduct.yml"
+    prefix:   /userproduct
+
+ipf_front_product:
+    resource: "@IpfFrontBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+ipf_front_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IpfFrontBundle:Default:index }
+    

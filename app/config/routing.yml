@@ -1,3 +1,11 @@
+ipf_user:
+    resource: "@IpfUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ipf_front:
+    resource: "@IpfFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

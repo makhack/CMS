@@ -1,0 +1,118 @@
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
+
+{% block sideCategory %}
+    <div class="col-md-3">
+        <p class="lead">Ulysse</p>
+        <div class="list-group">
+            <a href="{{ path('product') }}" class="list-group-item">All</a>
+            <a href="#" class="list-group-item">Ajouter mon produit</a>
+            <a href="#" class="list-group-item">Category 3</a>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
+{% block body -%}
+    <div class="col-md-9">
+        <div class="row">
+    <h1>Ajouter un nouveau produit</h1>
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+<div class="well">
+    {{ form_start(form) }}
+        <label>Description du produit</label>
+        {{ form_widget(form.userproductDescription) }}
+        {{ form_row(form.userproductPrice) }}
+        {{ form_row(form.userproductUser) }}
+        {{ form_row(form.userproductProduct) }}
+        {{ form_row(form.userproductSaledate) }}
+        {{ form_row(form.userproductValidated) }}
+        {{ form_widget(form._token) }}
+        {{ form_row(form.submit) }}
+    {{ form_end(form, {'render_rest': false}) }}
+</div>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('userproduct') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+        </div>
+    </div>
+            {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google
+   mais si vous l'avez en local, changez simplement l'adresse. #}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+{# Voici le script en question : #}
+<script type="text/javascript"> 
+  $(document).ready(function() {
+    
+    multiContainer('div#ipf_frontbundle_userproduct_userproductProduct_tags','tag');
+    multiContainer('div#ipf_frontbundle_userproduct_userproductProduct_pictures','picture');
+    function multiContainer($prototypeChamp,$name){
+
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $($prototypeChamp);
+
+    // On ajoute un lien pour ajouter une nouvelle catégorie
+    var $addLink = $('<a href="#" id="add_product" class="btn btn-default">Ajouter un '+$name+'</a>');
+    $container.append($addLink);
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $addLink.click(function(e) {
+      addCategory($container);
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    if (index == 0) {
+      addCategory($container);
+    } else {
+      // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire Categorie
+    function addCategory($container) {
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, $name + ' n°' + (index+1))
+          .replace(/__name__/g, index));
+
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+      // Ajout du lien
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+    }
+  });
+  </script>
+{% endblock %}

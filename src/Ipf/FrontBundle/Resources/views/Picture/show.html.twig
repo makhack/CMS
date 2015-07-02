@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Picture</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Pictureid</th>
+                <td>{{ entity.pictureId }}</td>
+            </tr>
+            <tr>
+                <th>Pictureurl</th>
+                <td>{{ entity.pictureUrl }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('picture') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('picture_edit', { 'id': entity.pictureId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
