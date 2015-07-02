@@ -23,13 +23,22 @@ class UserproductController extends Controller
      * Lists all Userproduct entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        
+        var_dump($request->get('id'));
+        if($request->get('id')){
+            $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByCategory($category);
+        }
+        else{
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        }
+        
         $em->getRepository('IpfFrontBundle:product')->findAll();
         $em->getRepository('IpfFrontBundle:user')->findAll();
+        
         return $this->render('IpfFrontBundle:Userproduct:index.html.twig', array(
             'entities' => $entities,
         ));
@@ -107,25 +116,25 @@ class UserproductController extends Controller
      * Displays a form to create a new Userproduct entity.
      *
      */
-    public function newAction($id)
+    public function newAction(Request $request)
     {
-        
         $entity = new Userproduct();
+
+
         $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
-        
-        $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
-        $product->setPictures(array());
+        if($request->get('id')){
+            var_dump($request->get('id'));
+            $product = $em->getRepository('IpfFrontBundle:Product')->find($request->get('id'));
+            $product->setPictures(array());
+        }
         $entity->setUserproductProduct($product);
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
-        
-        
+        $entity->setUserproductSaledate(new DateTime('now'));
         $form   = $this->createCreateForm($entity);
-        
-        $form->get('userproductSaledate')->setData(new DateTime('now'));
-        
+
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),

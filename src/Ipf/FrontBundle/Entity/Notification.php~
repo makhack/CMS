@@ -46,4 +46,83 @@ class Notification
     private $notificationUser;
 
 
+
+    /**
+     * Get notificationId
+     *
+     * @return integer 
+     */
+    public function getNotificationId()
+    {
+        return $this->notificationId;
+    }
+
+    /**
+     * Set notificationDescription
+     *
+     * @param string $notificationDescription
+     * @return Notification
+     */
+    public function setNotificationDescription($notificationDescription)
+    {
+        $this->notificationDescription = $notificationDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationDescription
+     *
+     * @return string 
+     */
+    public function getNotificationDescription()
+    {
+        return $this->notificationDescription;
+    }
+
+    /**
+     * Set notificationExpired
+     *
+     * @param boolean $notificationExpired
+     * @return Notification
+     */
+    public function setNotificationExpired($notificationExpired)
+    {
+        $this->notificationExpired = $notificationExpired;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationExpired
+     *
+     * @return boolean 
+     */
+    public function getNotificationExpired()
+    {
+        return $this->notificationExpired;
+    }
+
+    /**
+     * Set notificationUser
+     *
+     * @param \Ipf\FrontBundle\Entity\User $notificationUser
+     * @return Notification
+     */
+    public function setNotificationUser(\Ipf\FrontBundle\Entity\User $notificationUser = null)
+    {
+        $this->notificationUser = $notificationUser;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationUser
+     *
+     * @return \Ipf\FrontBundle\Entity\User 
+     */
+    public function getNotificationUser()
+    {
+        return $this->notificationUser;
+    }
 }

@@ -42,4 +42,60 @@ class Orderuserproduct
     private $orderuserproductUserproduct;
 
 
+
+    /**
+     * Get orderuserproductId
+     *
+     * @return integer 
+     */
+    public function getOrderuserproductId()
+    {
+        return $this->orderuserproductId;
+    }
+
+    /**
+     * Set orderuserproductOrder
+     *
+     * @param \Ipf\FrontBundle\Entity\Order $orderuserproductOrder
+     * @return Orderuserproduct
+     */
+    public function setOrderuserproductOrder(\Ipf\FrontBundle\Entity\Order $orderuserproductOrder = null)
+    {
+        $this->orderuserproductOrder = $orderuserproductOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get orderuserproductOrder
+     *
+     * @return \Ipf\FrontBundle\Entity\Order 
+     */
+    public function getOrderuserproductOrder()
+    {
+        return $this->orderuserproductOrder;
+    }
+
+    /**
+     * Set orderuserproductUserproduct
+     *
+     * @param \Ipf\FrontBundle\Entity\Userproduct $orderuserproductUserproduct
+     * @return Orderuserproduct
+     */
+    public function setOrderuserproductUserproduct(\Ipf\FrontBundle\Entity\Userproduct $orderuserproductUserproduct = null)
+    {
+        $this->orderuserproductUserproduct = $orderuserproductUserproduct;
+
+        return $this;
+    }
+
+    /**
+     * Get orderuserproductUserproduct
+     *
+     * @return \Ipf\FrontBundle\Entity\Userproduct 
+     */
+    public function getOrderuserproductUserproduct()
+    {
+        return $this->orderuserproductUserproduct;
+    }
 }

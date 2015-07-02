@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ProductController extends Controller
 {
-
     /**
      * Lists all Product entities.
      *
@@ -64,22 +63,13 @@ class ProductController extends Controller
                     $em->flush();
                     $productTag->setProducttagTag($tag);
                     $productTag->setProducttagProduct($entity);
-                    var_dump($tagExist);
-                    die;
                 }else{
                     $productTag->setProducttagTag($tagExist);
                     $productTag->setProducttagProduct($entity);
-                    var_dump($tagExist);
-                    die;
 
                 }
                 $em->persist($productTag);
                 $em->flush();
-
-                
-
-                var_dump($productTag);
-                die();
             }
 
             return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getProductId())));
