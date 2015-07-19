@@ -1,0 +1,11 @@
+cart:
+    path:     /
+    defaults: { _controller: "IpfFrontBundle:Cart:index" }
+    
+cart_add:
+    path:     /add
+    defaults: { _controller: "IpfFrontBundle:Cart:add" }
+    
+cart_remove:
+    path:     /remove
+    defaults: { _controller: "IpfFrontBundle:Cart:remove" }

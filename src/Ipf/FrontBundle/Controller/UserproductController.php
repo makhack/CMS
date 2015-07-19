@@ -11,6 +11,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Ipf\FrontBundle\Entity\Producttag;
 use Ipf\FrontBundle\Entity\Tag;
+use Ipf\FrontBundle\Entity\Cart;
 
 /**
  * Userproduct controller.
