@@ -22,13 +22,13 @@ class UserproductController extends Controller
 
     /**
      * Lists all Userproduct entities.
-     *
+     * TODO :
+     *  Ajouter le nombre de vendeur qui vende ce produit
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         
-        var_dump($request->get('id'));
         if($request->get('id')){
             $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
             $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByCategory($category);
