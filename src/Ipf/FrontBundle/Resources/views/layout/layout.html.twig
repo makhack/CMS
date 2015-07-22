@@ -5,9 +5,6 @@
         <title>{% block title %}Ulysse for you !{% endblock %}</title>
         {% stylesheets
             'bundles/Ipf/css/*'
-            'bundles/Ipffront/css/bootstrap.css' 
-            'bundles/Ipf/css/mycss.css'
-            'bundles/Ipf/css/animate.css'
             filter='cssrewrite' 
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
@@ -97,7 +94,8 @@
         
         
 
-        {% javascripts  
+        {% javascripts
+            '@IpfFrontBundle/Resources/public/js/jquery-1.11.3.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular.min.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular-animate.min.js'
             '@IpfFrontBundle/Resources/public/js/app/ulysse.js'
