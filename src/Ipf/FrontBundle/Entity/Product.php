@@ -7,18 +7,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ipf\FrontBundle\Entity\Category;
 use Ipf\FrontBundle\Entity\Picture;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Product
- *
+ * 
  * @ORM\Table(name="product", indexes={@ORM\Index(name="FK_category_idx", columns={"product_category_id"})})
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Product
 {
     /**
      * @var integer
-     *
+     * @Expose
      * @ORM\Column(name="product_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -28,7 +31,7 @@ class Product
     /**
      * @var string
      * @Assert\NotBlank()
-     *
+     * @Expose
      * @ORM\Column(name="product_name", type="string", length=255, nullable=false)
      */
     private $productName;
@@ -36,7 +39,7 @@ class Product
     /**
      * @var Category
      * @Assert\NotBlank()
-     *
+     * 
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_category_id", referencedColumnName="category_id")
@@ -46,6 +49,7 @@ class Product
     
     /**
      * @var type 
+     * @Expose
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="pictureProductid", cascade={"persist"})
      */
     private $pictures;
@@ -139,4 +143,27 @@ class Product
    {
        return $this->getProductName();
    }
+
+    /**
+     * Add pictures
+     *
+     * @param \Ipf\FrontBundle\Entity\Picture $pictures
+     * @return Product
+     */
+    public function addPicture(\Ipf\FrontBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \Ipf\FrontBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\Ipf\FrontBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
 }

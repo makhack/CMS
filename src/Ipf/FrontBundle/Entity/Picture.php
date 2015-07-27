@@ -5,19 +5,21 @@ namespace Ipf\FrontBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
-
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 /**
  * Picture
  *
  * @ORM\Table(name="picture", indexes={@ORM\Index(name="fk_picture_product_id_idx", columns={"picture_productid"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
+ * @ExclusionPolicy("all")
  */
 class Picture
 {
     /**
      * @var integer
-     *
+     * @Expose
      * @ORM\Column(name="picture_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -31,6 +33,7 @@ class Picture
     public $file;
 
     /**
+     * @Expose
      * @var string
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="pictures", cascade={"persist"})
      * @ORM\Column(name="picture_url", type="string", length=255, nullable=false)

@@ -42,4 +42,60 @@ class Producttag
     private $producttagTag;
 
 
+
+    /**
+     * Get producttagId
+     *
+     * @return integer 
+     */
+    public function getProducttagId()
+    {
+        return $this->producttagId;
+    }
+
+    /**
+     * Set producttagProduct
+     *
+     * @param \Ipf\FrontBundle\Entity\Product $producttagProduct
+     * @return Producttag
+     */
+    public function setProducttagProduct(\Ipf\FrontBundle\Entity\Product $producttagProduct = null)
+    {
+        $this->producttagProduct = $producttagProduct;
+
+        return $this;
+    }
+
+    /**
+     * Get producttagProduct
+     *
+     * @return \Ipf\FrontBundle\Entity\Product 
+     */
+    public function getProducttagProduct()
+    {
+        return $this->producttagProduct;
+    }
+
+    /**
+     * Set producttagTag
+     *
+     * @param \Ipf\FrontBundle\Entity\Tag $producttagTag
+     * @return Producttag
+     */
+    public function setProducttagTag(\Ipf\FrontBundle\Entity\Tag $producttagTag = null)
+    {
+        $this->producttagTag = $producttagTag;
+
+        return $this;
+    }
+
+    /**
+     * Get producttagTag
+     *
+     * @return \Ipf\FrontBundle\Entity\Tag 
+     */
+    public function getProducttagTag()
+    {
+        return $this->producttagTag;
+    }
 }
