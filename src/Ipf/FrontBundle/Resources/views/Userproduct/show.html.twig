@@ -1,13 +1,11 @@
 {% extends 'IpfFrontBundle:layout:layout.html.twig' %}
 {% block sideCategory %}
-    <div class="col-md-3">
-        <p class="lead">Ulysse</p>
+     <div class="col-md-3">
+        <p class="lead">Tout les produits</p>
         <div class="list-group">
             <a href="#" class="list-group-item">Search</a>
-            <a href="#" class="list-group-item">All</a>
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="{{path('userproduct')}}" class="list-group-item">Tous</a>
+            {{ render(controller('IpfFrontBundle:Category:list')) }}
         </div>
     </div>
     <br/>
