@@ -1,4 +1,8 @@
 ipf_front_category:
+    resource: "@IpfFrontBundle/Resources/config/routing/cart.yml"
+    prefix: /cart
+
+ipf_front_category:
     resource: "@IpfFrontBundle/Resources/config/routing/category.yml"
     prefix:   /category
 

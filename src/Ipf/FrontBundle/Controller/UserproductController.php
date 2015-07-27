@@ -11,6 +11,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Ipf\FrontBundle\Entity\Producttag;
 use Ipf\FrontBundle\Entity\Tag;
+use Ipf\FrontBundle\Entity\Cart;
 
 /**
  * Userproduct controller.
@@ -21,13 +22,13 @@ class UserproductController extends Controller
 
     /**
      * Lists all Userproduct entities.
-     *
+     * TODO :
+     *  Ajouter le nombre de vendeur qui vende ce produit
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         
-        var_dump($request->get('id'));
         if($request->get('id')){
             $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
             $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByCategory($category);
@@ -119,8 +120,6 @@ class UserproductController extends Controller
     public function newAction(Request $request)
     {
         $entity = new Userproduct();
-
-
         $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
@@ -130,6 +129,7 @@ class UserproductController extends Controller
             $product->setPictures(array());
         }
         $entity->setUserproductProduct($product);
+        $entity->setUserproductUser($this->getUser());
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
         $entity->setUserproductSaledate(new DateTime('now'));
