@@ -1,0 +1,83 @@
+/* PANIER */
+
+/*Product*/
+.glyphicon-minus{
+    top:-5px;
+    right:7px;
+}
+.product-button{
+    vertical-align: middle;
+    height : 20px;
+    width : 20px;
+    float : right;
+}
+/*fin product*/
+
+/* NAV BAR */
+.toggle{
+    z-index: 7;
+    height : 100%;
+    width:200px;
+    background-color : #40393F;
+    position: fixed;
+    right: 0; 
+    top: 7%;
+    color : #FFE4FB;
+}
+
+.sideBlock{
+    margin-top: 30%;
+}
+
+.toggle.ng-enter, .toggle.ng-leave{
+    -webkit-transition-duration: 1s;
+}
+
+.toggle.ng-enter{
+    opacity: 0;
+    transform: translateX(200px);
+    height : 100%;
+}
+
+.toggle.ng-enter-active{
+    opacity: 1;
+    transform: translateX(0px);
+    height : 100%;
+}
+
+.toggle.ng-leave{
+    height : 100%;
+}
+
+.toggle.ng-leave-active{
+    height: 100%;
+    opacity:0;
+    transform: translateX(200px);
+}
+/* FIN NAVBAR*/
+
+/* list de produit */
+.sideBlock tr {
+    margin-bottom : 20px;
+    color: #40393F;
+}
+/* FIN  */
+/* SIDEBAR BUTTON */
+.navbar-toggle {
+    margin-left : 200px;
+    display: initial;
+}
+
+.navbar-right{
+    margin-top: -50px;
+}
+
+@media screen and (max-width: 640px) {
+  .navbar-right{
+    margin-top: -200px;
+}
+}
+
+/* FIN SIDEBAR BUTTON*/
+
+/* FIN PANIER */

@@ -1,0 +1,36 @@
+{% extends 'IpfFrontBundle:layout:layout.html.twig' %}
+
+
+{% block body -%}
+    <h1>5 Last Product Sold</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>User Product ID</th>
+                <td>{{ entities.userProduct_id }}</td>
+            </tr>
+            {#<tr>
+                <th>Product ID</th>
+                <td>{{ entities.userProduct_product_id }}</td>
+            </tr>
+            <tr>
+                <th>User Product Sold</th>
+                <td>{{ entities.userProduct_product_id }}</td>
+            </tr>
+            <tr>
+                <th>User Product Sale</th>
+                <td>{{ entities.userProduct_product_id }}</td>
+            </tr>#}
+        </tbody>
+    </table>
+
+        <ul>
+    <li>
+        {#<a href="{{ path('account') }}">
+            
+        </a>#}
+    </li>
+
+</ul>
+{% endblock %}

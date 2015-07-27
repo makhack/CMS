@@ -9,6 +9,7 @@ use Ipf\FrontBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Userproduct
  *
@@ -30,6 +31,7 @@ class Userproduct
     /**
      * @var integer
      * @Expose
+     * @Assert\NotBlank()
      * @ORM\Column(name="userProduct_price", type="integer", nullable=false)
      */
     private $userproductPrice;
@@ -57,7 +59,7 @@ class Userproduct
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="userProduct_description", type="text", nullable=false)
      */
     private $userproductDescription;
@@ -71,6 +73,7 @@ class Userproduct
 
     /**
      * @var Product
+     * @Assert\NotBlank()
      * @Expose
      * @ORM\ManyToOne(targetEntity="Product", cascade={"persist"})
      * @ORM\JoinColumns({

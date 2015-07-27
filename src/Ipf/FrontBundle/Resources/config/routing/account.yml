@@ -1,11 +1,3 @@
-cart:
+account:
     path:     /
-    defaults: { _controller: "IpfFrontBundle:Cart:index" }
-    
-cart_remove:
-    path:     /remove
-    defaults: { _controller: "IpfFrontBundle:Cart:remove" }
-    
-cart_add:
-    path:     /add/{id}
-    defaults: { _controller: "IpfFrontBundle:Cart:add" }
+    defaults: { _controller: "IpfFrontBundle:Account:index"}

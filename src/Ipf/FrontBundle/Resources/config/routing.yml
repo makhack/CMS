@@ -25,8 +25,12 @@ ipf_front_userproduct:
 ipf_front_product:
     resource: "@IpfFrontBundle/Resources/config/routing/product.yml"
     prefix:   /product
+    
+ipf_front_account:
+    resource: "@IpfFrontBundle/Resources/config/routing/account.yml"
+    prefix:   /account
 
 ipf_front_homepage:
     path:     /hello/{name}
     defaults: { _controller: IpfFrontBundle:Default:index }
-    
+ 
