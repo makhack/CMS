@@ -2,44 +2,52 @@
 
 namespace Ipf\FrontBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ipf\FrontBundle\Entity\Cart;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class CartController extends Controller{
     
     public function indexAction(Request $request)
-    {
-        var_dump('index');
-        $panier = new Cart($request);
-        var_dump($panier->getPanier());
-        die;
+    { 
+        $serializer = $this->get('jms_serializer');
+        $cart = new Cart($request);
+        $em = $this->getDoctrine()->getManager();
+        $panier = $cart->getPanier();
+        
+        $json = $serializer->serialize($panier, "json");
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse($json);
     }
     
     public function addAction(Request $request)
     {
         $panier = new Cart($request);
-//        $id = $request->request->get(18);
-        $id = 20;
+        $id = $request->get('id');
+
         if($id != null){
             $em = $this->getDoctrine()->getManager();
-
-            $product = $em->getRepository('IpfFrontBundle:Userproduct')->find($id);
-            $panier->add($product);
+            $em->getRepository('IpfFrontBundle:Product')->findAll();
+            $em->getRepository('IpfFrontBundle:picture')->findAll();
+            $userProduct = $em->getRepository('IpfFrontBundle:Userproduct')->find($id);
+            $panier->add($userProduct);
+//            $pictures = $panier->getUserProduct(18)->getUserproductProduct()->getPictures();
+//            var_dump($pictures->current());
+//            die;
         }
-        var_dump($panier->getPanier());
-        die;
+        return $this->redirect($this->generateUrl('userproduct_show', array('id' => $userProduct->getUserproductId())));
     }
     
     public function removeAction(Request $request)
     {
         $panier = new Cart($request);
-//        $id = $request->request->get('id');
-        $id = 20;
+        $data = json_decode($request->getContent());
+        $id = $data[0][0];
+        
         if($id != null){
             $panier->remove($id);
         }
-        die;
+        return new \Symfony\Component\HttpFoundation\JsonResponse("ok");
     }
 }

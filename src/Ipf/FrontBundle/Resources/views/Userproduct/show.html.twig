@@ -30,6 +30,7 @@
                 <p>{{ entity.userproductDescription }}</p>
                 <p>Category : {{ entity.userproductProduct.productCategory.categoryName }}</p>
                 <p>Vendeur : {{ entity.userproductUser.username }}</p>
+                <a href="{{ path('cart_add', { 'id': entity.userproductId }) }}">Ajouter au panier</a>
             </div>
         </div>
 

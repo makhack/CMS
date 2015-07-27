@@ -3,9 +3,11 @@
 namespace Ipf\FrontBundle\Entity;
 
 use Ipf\FrontBundle\Entity\Product;
-
+/* 
+ *
+ */
 class Cart{
-    
+
     private $produits;
     private $session;
     
@@ -18,11 +20,9 @@ class Cart{
     }
     
     public function add(Userproduct $product){
-        
         $productKey = $product->getUserproductId();
         $this->produits[$productKey] = $product;
         $this->session->set('cartElements', $this->produits);
-        
     }
     
     public function remove($productKey){
@@ -32,6 +32,10 @@ class Cart{
     
     public function getPanier(){
         return $this->produits;
+    }
+    
+    public function getUserProduct($productKey){
+        return $this->produits[$productKey];
     }
     
     

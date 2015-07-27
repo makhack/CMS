@@ -120,8 +120,6 @@ class UserproductController extends Controller
     public function newAction(Request $request)
     {
         $entity = new Userproduct();
-
-
         $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
@@ -131,6 +129,7 @@ class UserproductController extends Controller
             $product->setPictures(array());
         }
         $entity->setUserproductProduct($product);
+        $entity->setUserproductUser($this->getUser());
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
         $entity->setUserproductSaledate(new DateTime('now'));

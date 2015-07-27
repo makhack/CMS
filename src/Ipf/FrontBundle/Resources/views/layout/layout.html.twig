@@ -66,19 +66,18 @@
                 <div class="sideBlock">
                     <label> Votre panier </label>
                     <table class="table">
-                        <tr class="active">
+                        <tr class="active" ng-repeat="product in panier">
                             <td>
-                            bonjour
+                            [[product.userproduct_product.product_name]]
+                            
+                            <img ng-src="[[product.userproduct_product.pictures[0].picture_url]]"/>
+                            <button ng-click="delete([[product.userproduct_id]])" class="product-button btn btn-danger">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
                             </td>
-                        
                         </tr>
-                        <tr class="active">
-                            <td>
-                            bonjour
-                            </td>
-                        </tr>
-                       
-
+                        </br>
+                        [[empty]]
                     </table>
                 </div>
                 
@@ -100,6 +99,7 @@
             '@IpfFrontBundle/Resources/public/js/angular/angular-animate.min.js'
             '@IpfFrontBundle/Resources/public/js/app/ulysse.js'
             '@IpfFrontBundle/Resources/public/js/app/cart/cart.js'
+            '@IpfFrontBundle/Resources/public/js/app/cart/services/panier.js'
             '@IpfFrontBundle/Resources/public/js/app/navbar/navbar.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
