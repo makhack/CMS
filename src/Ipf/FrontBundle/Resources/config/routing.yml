@@ -33,4 +33,7 @@ ipf_front_account:
 ipf_front_homepage:
     path:     /hello/{name}
     defaults: { _controller: IpfFrontBundle:Default:index }
+    
+
+    
  

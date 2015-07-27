@@ -1,3 +1,7 @@
 account:
     path:     /
     defaults: { _controller: "IpfFrontBundle:Account:index"}
+    
+account_sold:
+    path:     /sold
+    defaults: { _controller: "IpfFrontBundle:Account:sold"}

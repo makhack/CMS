@@ -18,4 +18,13 @@ class UserProductRepository extends EntityRepository{
             
     }
     
+    public function findBySold()
+    {
+        $userProductCategory = $this->createQueryBuilder('u')
+            ->where('u.userproductSold = :userProduct_sold')
+            ->setParameter('userProduct_sold', '1');
+        return $userProductCategory->getQuery()->getResult();
+            
+    }
+    
 }
