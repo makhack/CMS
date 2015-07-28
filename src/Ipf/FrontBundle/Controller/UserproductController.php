@@ -60,9 +60,11 @@ class UserproductController extends Controller
             $em->flush();
             
             foreach($entity->getUserproductProduct()->getPictures() as $picture){
+                
                 $picture->setPictureProductid($entity->getUserproductProduct());
+                
                 $em->persist($picture);
-                $em->flush();                
+                $em->flush();
             }
             
             foreach($entity->getUserproductProduct()->getTags() as $tag){
