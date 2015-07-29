@@ -19,6 +19,7 @@ panier.factory("panier", function($q,$http,$rootScope){
         },
         removeProduct : function(id){
             var deferred = $q.defer();
+            console.log(id);
             result = $http.post($rootScope.baseUri + "cart/remove",id);
             result.success(function(data, status, headers, config){
                 deferred.resolve(data);

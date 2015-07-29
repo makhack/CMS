@@ -7,6 +7,14 @@ use Ipf\FrontBundle\Entity\Category;
 
 class ProductRepository extends EntityRepository{
     
+
+    public function searchByName($text){
+        $product = $this->createQueryBuilder('p')
+                ->where('p.productName LIKE :text')
+                ->setParameter('text', '%'.$text.'%');
+        return $product->getQuery()->getResult();
+    }
+
     public function findByCategory(Category $category)
     {
         $productCategory = $this->createQueryBuilder('p')
@@ -14,6 +22,7 @@ class ProductRepository extends EntityRepository{
             ->where('c.categoryId = :categoryid')
             ->setParameter('categoryid', $category->getCategoryId());
         return $productCategory->getQuery()->getResult();
+
     }
     
 }

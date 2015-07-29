@@ -71,7 +71,7 @@
         {% endblock %}
 
         <div ng-controller="CartCtrl">
-            <div ng-if="toggle" class="toggle">
+            <div ng-if="toggle" class="toggle" ng-cloak>
                 <div class="sideBlock">
                     <h5 class="panier-title"> Votre panier </h5>
                     <table class="table">
@@ -106,10 +106,12 @@
             '@IpfFrontBundle/Resources/public/js/jquery-1.11.3.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular.min.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular-animate.min.js'
+            '@IpfFrontBundle/Resources/public/js/angular/angular-sanitize.min.js'
             '@IpfFrontBundle/Resources/public/js/app/ulysse.js'
             '@IpfFrontBundle/Resources/public/js/app/cart/cart.js'
             '@IpfFrontBundle/Resources/public/js/app/cart/services/panier.js'
             '@IpfFrontBundle/Resources/public/js/app/navbar/navbar.js'
+            '@IpfFrontBundle/Resources/public/js/app/search/search.js'
             '@IpfFrontBundle/Resources/public/js/bootstrap.min.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>

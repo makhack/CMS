@@ -18,6 +18,15 @@ class UserProductRepository extends EntityRepository{
             
     }
     
+    public function searchByProductName($text)
+    {
+        $userProducts = $this->createQueryBuilder('u')
+            ->innerjoin('u.userproductProduct','p')
+                ->where('p.productName LIKE :text')
+                ->setParameter('text', '%'.$text.'%');
+        return $userProducts->getQuery()->getResult();
+    }
+    
     public function findBySold()
     {
         $userProductCategory = $this->createQueryBuilder('u')
