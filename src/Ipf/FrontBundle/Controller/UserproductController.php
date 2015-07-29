@@ -288,9 +288,9 @@ class UserproductController extends Controller
         $text = $request->get('id');
         $isCategory = $request->get('isCategory');
         $isTag = $request->get('isTag');
-        
         if($text){
-            if(!$isCategory && !$isTag){
+//            var_dump($isCategory);
+            if($isCategory && !$isTag){
                 $em->getRepository('IpfFrontBundle:Product')->findAll();
                 $entities = $em->getRepository('IpfFrontBundle:Userproduct')->searchByProductName($text);
 //                var_dump($entities);
@@ -299,7 +299,6 @@ class UserproductController extends Controller
         }
         else{
             $entities = array();
-            
             $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
             'entities' => $entities,
             ));
@@ -309,7 +308,7 @@ class UserproductController extends Controller
             $response->setStatusCode(204);
             return $response;
         }
-        
+
         $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
             'entities' => $entities,
         ));

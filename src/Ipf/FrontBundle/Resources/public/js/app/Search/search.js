@@ -4,6 +4,7 @@ search.controller("searchCtrl",function($http, $rootScope, $scope){
     
 //    $rootScope.search.isCategory = false;
 //    $rootScope.search.isTag = false;
+    console.log($rootScope.search.isCategory);
     $rootScope.change = function(){
         
         console.log($rootScope.search.text);
