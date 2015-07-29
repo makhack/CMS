@@ -1,4 +1,4 @@
-var ulysse = angular.module("ulysse",['cart','navbar','panier'],
+var ulysse = angular.module("ulysse",['cart','navbar','panier','search'],
     function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
