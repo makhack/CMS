@@ -2,7 +2,7 @@
 
 {% block sideCategory %}
     <div class="col-md-3">
-        <p class="lead">Ulysse</p>
+        <p class="lead">Vendre un produit</p>
         <div class="list-group">
             <a href="{{ path('product') }}" class="list-group-item">All</a>
             <a href="{{path('userproduct_new')}}" class="list-group-item">Ajouter mon produit</a>
@@ -23,10 +23,14 @@
             <label>Description du produit</label>
             {{ form_widget(form.userproductDescription) }}
             {{ form_row(form.userproductPrice) }}
+            <div style="display:none">
             {{ form_row(form.userproductUser) }}
-            {{ form_row(form.userproductProduct) }}
+            </div>
+            {{ form_widget(form.userproductProduct) }}
             {{ form_row(form.userproductSaledate) }}
+            <div style="display:none;">
             {{ form_row(form.userproductValidated) }}
+            </div>
             {{ form_widget(form._token) }}
             {{ form_row(form.submit) }}
         {{ form_end(form, {'render_rest': false}) }}
