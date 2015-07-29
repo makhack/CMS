@@ -5,3 +5,18 @@ account:
 account_sold:
     path:     /sold
     defaults: { _controller: "IpfFrontBundle:Account:sold"}
+    
+account_bought:
+    path:     /bought
+    defaults: { _controller: "IpfFrontBundle:Account:bought"}   
+    
+account_index:
+    path:     /index
+    defaults: { _controller: "IpfFrontBundle:Account:index"}    
+    
+account_infouser:
+    path:     /infouser
+    defaults: { _controller: "IpfFrontBundle:Account:infouser"}     
+    
+
+ 

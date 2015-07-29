@@ -34,6 +34,13 @@ ipf_front_homepage:
     path:     /hello/{name}
     defaults: { _controller: IpfFrontBundle:Default:index }
     
+ipf_front_login:
+    resource: "@IpfFrontBundle/Resources/config/routing/login.yml"
+    prefix:   /login    
+    
+    
+ 
+    
 
     
  

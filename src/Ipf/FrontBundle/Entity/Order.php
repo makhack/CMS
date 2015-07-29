@@ -38,7 +38,7 @@ class Order
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="order_user_buyer_id", referencedColumnName="user_id")
      * })
@@ -123,6 +123,10 @@ class Order
      */
     public function getOrderUserBuyer()
     {
+        return $this->orderUserBuyer;
+    }
+    
+    public function __toString() {
         return $this->orderUserBuyer;
     }
 }

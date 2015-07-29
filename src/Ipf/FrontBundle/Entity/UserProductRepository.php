@@ -3,6 +3,8 @@ namespace Ipf\FrontBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Ipf\FrontBundle\Entity\Category;
+use Ipf\FrontBundle\Entity\Userproduct;
+
 
 
 class UserProductRepository extends EntityRepository{
@@ -20,11 +22,14 @@ class UserProductRepository extends EntityRepository{
     
     public function findBySold()
     {
-        $userProductCategory = $this->createQueryBuilder('u')
+        $userProductSold = $this->createQueryBuilder('u')
             ->where('u.userproductSold = :userProduct_sold')
             ->setParameter('userProduct_sold', '1');
-        return $userProductCategory->getQuery()->getResult();
+        return $userProductSold->getQuery()->getResult();
             
     }
+    
+    
+    
     
 }
