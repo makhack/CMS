@@ -126,7 +126,6 @@ class UserproductController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         if($request->get('id')){
-            var_dump($request->get('id'));
             $product = $em->getRepository('IpfFrontBundle:Product')->find($request->get('id'));
             $product->setPictures(array());
         }
@@ -281,6 +280,13 @@ class UserproductController extends Controller
         ;
     }
     
+    /**
+     * 
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * 
+     * 
+     */
     public function searchAction(Request $request){
         $serializer = $this->get('jms_serializer');
         $em = $this->getDoctrine()->getManager();
@@ -289,12 +295,20 @@ class UserproductController extends Controller
         $isCategory = $request->get('isCategory');
         $isTag = $request->get('isTag');
         if($text){
-//            var_dump($isCategory);
-            if($isCategory && !$isTag){
+            if($isCategory == 'false' && $isTag == 'false'){
                 $em->getRepository('IpfFrontBundle:Product')->findAll();
-                $entities = $em->getRepository('IpfFrontBundle:Userproduct')->searchByProductName($text);
-//                var_dump($entities);
-//                die;   
+                $entities = $em->getRepository('IpfFrontBundle:Userproduct')->searchByProductName($text);  
+            }
+            if($isCategory == 'false' && $isTag == 'true'){
+                $em->getRepository('IpfFrontBundle:Product')->findAll();
+                $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+                $view = $this->render('IpfFrontBundle:Userproduct:searchtag.html.twig', array(
+                    'entities' => $entities,
+                ));
+
+                $json = $serializer->serialize($view, "json");
+
+                return new \Symfony\Component\HttpFoundation\JsonResponse($json);
             }
         }
         else{
