@@ -3,8 +3,7 @@ namespace Ipf\FrontBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Ipf\FrontBundle\Entity\Category;
-use Ipf\FrontBundle\Entity\Userproduct;
-
+use Symfony\Component\HttpFoundation\Request;
 
 
 class UserProductRepository extends EntityRepository{
@@ -29,12 +28,46 @@ class UserProductRepository extends EntityRepository{
         return $userProducts->getQuery()->getResult();
     }
     
-    public function findBySold()
+    public function findBySold($user)
     {
+        $id = $user->getId();
         $userProductSold = $this->createQueryBuilder('u')
-            ->where('u.userproductSold = :userProduct_sold')
-            ->setParameter('userProduct_sold', '1');
+            ->where('u.userproductSold = :userproductSold')
+            ->andWhere('u.userproductUser = :userproductUser')
+            ->setParameters(array('userproductSold' => '1' ,'userproductUser' => $user));
         return $userProductSold->getQuery()->getResult();
+            
+    }
+    
+    
+
+    
+    public function findByAllSold($user)
+    {
+        
+        $id = $user->getId();
+        //$parameters = array('userproductSold' => '0' , 'userproductUser' => $user);
+        $userProductAllSold = $this->createQueryBuilder('u')
+            ->where('u.userproductSold = :userproductSold')
+            ->andWhere('u.userproductUser = :userproductUser')
+            ->setMaxResults(5)
+            ->setParameters(array('userproductSold' => '1' , 'userproductUser' => $user));
+        return $userProductAllSold->getQuery()->getResult();
+            
+    }
+    
+    
+    
+    public function findByInSale($user)
+    {
+        
+        $id = $user->getId();
+        //$parameters = array('userproductSold' => '0' , 'userproductUser' => $user);
+        $userProductInSale = $this->createQueryBuilder('u')
+            ->where('u.userproductSold = :userproductSold')
+            ->andWhere('u.userproductUser = :userproductUser')
+            ->setParameters(array('userproductSold' => '0' , 'userproductUser' => $user));
+        return $userProductInSale->getQuery()->getResult();
             
     }
     

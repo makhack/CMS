@@ -16,7 +16,11 @@ account_index:
     
 account_infouser:
     path:     /infouser
-    defaults: { _controller: "IpfFrontBundle:Account:infouser"}     
+    defaults: { _controller: "IpfFrontBundle:Account:infouser"}
+    
+account_insale:
+    path:     /insale
+    defaults: { _controller: "IpfFrontBundle:Account:insale"}      
     
 
  

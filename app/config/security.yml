@@ -20,6 +20,8 @@ security:
             logout:
                 target: /userproduct
             anonymous:    true
+          
+                
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
