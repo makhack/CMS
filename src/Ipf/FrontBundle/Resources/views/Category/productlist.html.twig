@@ -1,0 +1,3 @@
+{% for entity in categorys %}
+    <a href="{{ path('product', { 'id': entity.categoryId }) }}" class="list-group-item">{{ entity.categoryName }}</a>
+{% endfor %}

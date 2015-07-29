@@ -81,6 +81,15 @@ class CategoryController extends Controller
         return $this->render('IpfFrontBundle:Category:list.html.twig', array('categorys' => $categorys));
     }
     
+        public function productListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $categorys = $em->getRepository('IpfFrontBundle:Category')->findAll();
+        
+        return $this->render('IpfFrontBundle:Category:productlist.html.twig', array('categorys' => $categorys));
+    }
+    
     /**
      * Displays a form to create a new Category entity.
      *
