@@ -1,47 +1,15 @@
 {% extends 'IpfFrontBundle:layout:layout.html.twig' %}
 
-{% block body %}
-        <div class="col-md-9">
-        <div class="row">
-            
-          
-                {% for entity in entities %}
-       {#{{ i.orderuserproduct_userProduct_id }}#}
-       <table  class="table table-striped">
-           <th>ID</th>
-           <th>Product ID</th>
-           <th>Name</th>
-           <th>Date</th>
-          {# <tr>
-               
-               <td>
-                    {{ entity.orderId }}
-               </td>
-               <td>
-                    {{ entity.orderuserproductId }}
-               </td>#}
-              {# <td>
-                    {{ entity.orderDate }}
-               </td>
-           </tr>
-           <tr>
-               <td>
-                    {{ entity.orderDate }}
-               </td>
-           </tr>#}
-           {#<tr>
-               <td>
-                    {{ entity.orderuserproductOrder.orderuserproductOrder }}
-               </td>
-           </tr>#}
-           
-                {% endfor %}
-            
-    
-    {#orderuserproductOrder#}
 
-            
-            
-        </div>
-    </div>
-{% endblock %}
+{% if entities %}
+                {% for entity in entities %}
+                    
+                    
+                    
+                    {{ entity.orderId }}
+                    
+                    {% endfor %}
+            {% else %}
+                Aucuns produits !
+            {% endif %}
+

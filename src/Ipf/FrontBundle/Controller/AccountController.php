@@ -20,9 +20,12 @@ class AccountController extends Controller {
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
-                $em->getRepository('IpfFrontBundle:product')->findAll();
-        $em->getRepository('IpfFrontBundle:user')->findAll();
+        $user = $this->getUser();
+        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByAllSold($user);
+//        $em->getRepository('IpfFrontBundle:User')->findAll();
+//        $em->getRepository('IpfFrontBundle:Order')->findByBought($user);
+//        var_dump($entities);
+//        die;
         
         return $this->render('IpfFrontBundle:Account:index.html.twig', array(
             'entities' => $entities,
@@ -35,7 +38,10 @@ class AccountController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findBySold($user);
+//        $em->getRepository('IpfFrontBundle:User')->findAll();
+//        $em->getRepository('IpfFrontBundle:Order')->findByBought($user);
 //        var_dump($entities);
+//        var_dump($user);
 //        die;
         
         return $this->render('IpfFrontBundle:Account:sold.html.twig', array(
@@ -43,22 +49,40 @@ class AccountController extends Controller {
         ));
     }
     
-//    public function boughtAction()
-//    {
-//        
-//        
-//        $em = $this->getDoctrine()->getManager();
-//        $user = $this->getUser();
-//        //$entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findByorderuserproductUserproduct($user);
-////        $entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findAll();
-//        $entities = $em->getRepository('IpfFrontBundle:Order')->findAll();
+    public function insaleAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByInSale($user);
+//        $em->getRepository('IpfFrontBundle:User')->findAll();
+//        $em->getRepository('IpfFrontBundle:Order')->findByBought($user);
 //        var_dump($entities);
+//        var_dump($user);
 //        die;
-//        
-//        return $this->render('IpfFrontBundle:Account:bought.html.twig', array(
-//            'entities' => $entities,
-//        ));
-//    }
+        
+        return $this->render('IpfFrontBundle:Account:insale.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+    
+   
+    
+    public function boughtAction()
+    {
+        
+        
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        //$entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findByorderuserproductUserproduct($user);
+//        $entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findAll();
+        $entities = $em->getRepository('IpfFrontBundle:Order')->findAll();
+        var_dump($entities);
+        die;
+        
+        return $this->render('IpfFrontBundle:Account:bought.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
 
     
     public function infouserAction()

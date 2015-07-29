@@ -2,13 +2,13 @@
 
 {% block body -%}
     
-    <h4>Tous les produits vendus</h4>
-     
-        <div class="col-md-9">
-        <div class="row">
+    <h4>Tous les produits en vente</h4>
+      {#{% for entity in entities %}
+        {{ entity.userproductPrice }}
+         {% endfor %}#}
             {% if entities %}
                 {% for entity in entities %}
-                    {% if  entity.userproductSold == true %}
+                    
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div id="thumb" class="thumbnail">
                                 {% for picture in entity.userproductProduct.pictures %}
@@ -25,14 +25,12 @@
                                 </div>
                             </div>
                         </div>
-                    {% endif %}
+                    
                 {% endfor %}
             {% else %}
                 Aucuns produits !
             {% endif %}
-        </div>
-    </div>
-            
+      
             
            
             

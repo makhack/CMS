@@ -43,8 +43,10 @@
                                             <li><a href="{{path('account_index')}}">Accueil</a></li>
                                             <li><a href="{{path('account_sold')}}">Produits vendu(s)</a></li>
                                             <li><a href="{{path('account_bought')}}">Produits acheté(s)</a></li>
+                                            <li><a href="{{path('account_insale')}}">Produits en vente</a></li>
                                             <li><a href="{{path('account_infouser')}}">Info User</a></li>
-                                            <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
+                                            <li><a>__________</a></li>
+                                            <li><a href="{{path('fos_user_security_logout')}}">Deconnexion</a></li>
 
                                         </ul>
                                     </li>
@@ -52,6 +54,9 @@
                                 {% else %} 
                                     <li>
                                         <a href="{{path('fos_user_security_login')}}">Connexion</a>
+                                </li>
+                                <li>
+                                        <a href="{{path('fos_user_registration_register')}}">Créer un compte</a>
                                 </li>
                             {% endif %}
                             </ul>
