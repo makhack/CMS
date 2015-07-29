@@ -39,16 +39,19 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mon compte <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
+
                                             <li><a href="{{path('account_index')}}">Accueil</a></li>
                                             <li><a href="{{path('account_sold')}}">Produits vendu(s)</a></li>
                                             <li><a href="{{path('account_bought')}}">Produits acheté(s)</a></li>
                                             <li><a href="{{path('account_infouser')}}">Info User</a></li>
+                                            <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
+
                                         </ul>
                                     </li>
                                 </li>
                                 {% else %} 
                                     <li>
-                                    <a href="">Connexion</a>
+                                        <a href="{{path('fos_user_security_loginabs')}}">Connexion</a>
                                 </li>
                             {% endif %}
                             </ul>
@@ -75,9 +78,9 @@
         {% endblock %}
 
         <div ng-controller="CartCtrl">
-            <div ng-if="toggle" class="toggle">
+            <div ng-if="toggle" class="toggle" ng-cloak>
                 <div class="sideBlock">
-                    <label> Votre panier </label>
+                    <h5 class="panier-title"> Votre panier </h5>
                     <table class="table">
                         <tr class="active" ng-repeat="product in panier">
                             <td>
@@ -85,7 +88,7 @@
                             
                             <img ng-src="[[product.userproduct_product.pictures[0].picture_url]]"/>
                             <button ng-click="delete([[product.userproduct_id]])" class="product-button btn btn-danger">
-                                <span class="glyphicon glyphicon-minus"></span>
+                                <span class="glyphicon glyphicon-remove"></span>
                             </button>
                             </td>
                         </tr>
@@ -110,10 +113,12 @@
             '@IpfFrontBundle/Resources/public/js/jquery-1.11.3.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular.min.js'
             '@IpfFrontBundle/Resources/public/js/angular/angular-animate.min.js'
+            '@IpfFrontBundle/Resources/public/js/angular/angular-sanitize.min.js'
             '@IpfFrontBundle/Resources/public/js/app/ulysse.js'
             '@IpfFrontBundle/Resources/public/js/app/cart/cart.js'
             '@IpfFrontBundle/Resources/public/js/app/cart/services/panier.js'
             '@IpfFrontBundle/Resources/public/js/app/navbar/navbar.js'
+            '@IpfFrontBundle/Resources/public/js/app/search/search.js'
             '@IpfFrontBundle/Resources/public/js/bootstrap.min.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>

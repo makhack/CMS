@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation\Expose;
  * Product
  * 
  * @ORM\Table(name="product", indexes={@ORM\Index(name="FK_category_idx", columns={"product_category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ipf\FrontBundle\Entity\ProductRepository")
  * @ExclusionPolicy("all")
  */
 class Product

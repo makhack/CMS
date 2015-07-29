@@ -19,11 +19,17 @@ class ProductController extends Controller
      * Lists all Product entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('IpfFrontBundle:Product')->findAll();
+        
+        if($request->get('id')){
+            $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
+            $entities = $em->getRepository('IpfFrontBundle:Product')->findByCategory($category);
+            
+        }else{
+            $entities = $em->getRepository('IpfFrontBundle:Product')->findAll();
+        }
         $em->getRepository('IpfFrontBundle:Category')->findAll();
         return $this->render('IpfFrontBundle:Product:index.html.twig', array(
             'entities' => $entities,

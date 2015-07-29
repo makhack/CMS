@@ -280,4 +280,41 @@ class UserproductController extends Controller
             ->getForm()
         ;
     }
+    
+    public function searchAction(Request $request){
+        $serializer = $this->get('jms_serializer');
+        $em = $this->getDoctrine()->getManager();
+        
+        $text = $request->get('id');
+        $isCategory = $request->get('isCategory');
+        $isTag = $request->get('isTag');
+        if($text){
+//            var_dump($isCategory);
+            if($isCategory && !$isTag){
+                $em->getRepository('IpfFrontBundle:Product')->findAll();
+                $entities = $em->getRepository('IpfFrontBundle:Userproduct')->searchByProductName($text);
+//                var_dump($entities);
+//                die;   
+            }
+        }
+        else{
+            $entities = array();
+            $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
+            'entities' => $entities,
+            ));
+
+            $json = $serializer->serialize($view, "json");
+            $response = new \Symfony\Component\HttpFoundation\JsonResponse($json);
+            $response->setStatusCode(204);
+            return $response;
+        }
+
+        $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
+            'entities' => $entities,
+        ));
+        
+        $json = $serializer->serialize($view, "json");
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse($json);
+    }
 }

@@ -2,23 +2,29 @@ userproduct:
     path:     /
     defaults: { _controller: "IpfFrontBundle:Userproduct:index" }
 
-userproduct_show:
-    path:     /{id}/show
-    defaults: { _controller: "IpfFrontBundle:Userproduct:show" }
 
 userproduct_new:
     path:     /new
     defaults: { _controller: "IpfFrontBundle:Userproduct:new" }
     
-userproduct_new_id:
-    path:     /new/{id}
-    defaults: { _controller: "IpfFrontBundle:Userproduct:new" }
-    
+userproduct_search:
+    path:   /search
+    defaults: { _controller: "IpfFrontBundle:Userproduct:search" }
+
 userproduct_create:
     path:     /create
     defaults: { _controller: "IpfFrontBundle:Userproduct:create" }
     methods:  POST
 
+userproduct_new_id:
+    path:     /new/{id}
+    defaults: { _controller: "IpfFrontBundle:Userproduct:new" }
+
+
+userproduct_show:
+    path:     /{id}/show
+    defaults: { _controller: "IpfFrontBundle:Userproduct:show" }
+    
 userproduct_edit:
     path:     /{id}/edit
     defaults: { _controller: "IpfFrontBundle:Userproduct:edit" }
