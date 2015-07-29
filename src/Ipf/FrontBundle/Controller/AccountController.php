@@ -4,8 +4,6 @@
 namespace Ipf\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Ipf\FrontBundle\Entity\Userproduct;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,7 +30,7 @@ class AccountController extends Controller {
     }
     
     
-    public function SoldAction()
+    public function soldAction()
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -44,7 +42,36 @@ class AccountController extends Controller {
             'entities' => $entities,
         ));
     }
-//    
+    
+//    public function boughtAction()
+//    {
+//        
+//        
+//        $em = $this->getDoctrine()->getManager();
+//        $user = $this->getUser();
+//        //$entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findByorderuserproductUserproduct($user);
+////        $entities = $em->getRepository('IpfFrontBundle:Orderuserproduct')->findAll();
+//        $entities = $em->getRepository('IpfFrontBundle:Order')->findAll();
+//        var_dump($entities);
+//        die;
+//        
+//        return $this->render('IpfFrontBundle:Account:bought.html.twig', array(
+//            'entities' => $entities,
+//        ));
+//    }
+
+    
+    public function infouserAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('IpfFrontBundle:User')->findAll();
+               
+        
+        return $this->render('IpfFrontBundle:Account:infouser.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+    
 //    
 //    public function SellAction()
 //    {

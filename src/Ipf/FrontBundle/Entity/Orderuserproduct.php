@@ -24,7 +24,7 @@ class Orderuserproduct
     /**
      * @var \Order
      *
-     * @ORM\ManyToOne(targetEntity="Order")
+     * @ORM\ManyToOne(targetEntity="Order", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="orderuserproduct_order_id", referencedColumnName="order_id")
      * })
@@ -34,7 +34,7 @@ class Orderuserproduct
     /**
      * @var \Userproduct
      *
-     * @ORM\ManyToOne(targetEntity="Userproduct")
+     * @ORM\ManyToOne(targetEntity="Userproduct", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="orderuserproduct_userProduct_id", referencedColumnName="userProduct_id")
      * })
@@ -68,7 +68,7 @@ class Orderuserproduct
 
     /**
      * Get orderuserproductOrder
-     *
+     * 
      * @return \Ipf\FrontBundle\Entity\Order 
      */
     public function getOrderuserproductOrder()
@@ -98,4 +98,6 @@ class Orderuserproduct
     {
         return $this->orderuserproductUserproduct;
     }
+    
+
 }

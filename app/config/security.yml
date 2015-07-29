@@ -27,4 +27,6 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/product, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/userproduct/new, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/account, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        
