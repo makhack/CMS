@@ -21,7 +21,36 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
+    
+    /**
+     * @var string
+     * @ORM\Column(name="city", type="string", length=150, nullable=true)
+     */
+    private $city;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     */
+    private $address;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="country", type="string", length=150, nullable=true)
+     */
+    private $country;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="phone_number", type="string", length=15, nullable=true)
+     */
+    private $phoneNumber;
+    
+    /**
+     * @var string
+     * @ORM\Column(name="postal_code", type="string", length=10, nullable=true)
+     */
+    private $postalCode;
 
     /**
      * Get userId
@@ -31,5 +60,58 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+    
+    
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+    public function getCity()
+    {
+        return $this->city;
+    }
+    
+    public function getAdress()
+    {
+        return $this->address;
+    }
+    
+    public function setAdress($adress)
+    {
+        $this->address = $adress;
+        return $this;
+    }
+    
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    
+    public function setCountry($country)
+    {
+        $this->country = $country;
+        return $this;
+    }
+    
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+    
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+        return $this;
+    }
+    
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+        return $this;
     }
 }
