@@ -5,8 +5,8 @@
         <p class="lead">Vendre un produits </p>
         <div class="list-group">
             <a href="{{ path('product') }}" class="list-group-item">All</a>
-            <a href="#" class="list-group-item">Ajouter mon produit</a>
-            <a href="#" class="list-group-item">Category 3</a>
+            <a href="{{path('userproduct_new')}}" class="list-group-item">Ajouter mon produit</a>
+            {{ render(controller('IpfFrontBundle:Category:productList')) }}
         </div>
     </div>
     <br/>
@@ -16,25 +16,29 @@
 {% block body -%}
     <div class="col-md-9">
         <div class="row">
-            {% for entity in entities %}
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">                        
-                    {% for picture in entity.pictures %}
-                        {% if loop.index  < 2 %}
-                            <img src="{{ asset(picture.pictureUrl) }}" alt="">
-                        {% endif %}
-                    {% endfor %}
-                    
-                    
-                    <div class="caption">
-                        <h4><a href="#">{{ entity.productName }}</a>
-                        </h4>
-                        <p>{{ entity.productCategory.categoryName }}</p>
-                        <a href="{{ path('userproduct_new', { 'id': entity.productId }) }}">Je veux vendre le mien !</a>
+            {% if entities %}
+                {% for entity in entities %}
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">                        
+                        {% for picture in entity.pictures %}
+                            {% if loop.index  < 2 %}
+                                <img src="{{ asset(picture.pictureUrl) }}" alt="">
+                            {% endif %}
+                        {% endfor %}
+
+
+                        <div class="caption">
+                            <h4><a href="#">{{ entity.productName }}</a>
+                            </h4>
+                            <p>{{ entity.productCategory.categoryName }}</p>
+                            <a href="{{ path('userproduct_new', { 'id': entity.productId }) }}">Je veux vendre le mien !</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                Aucuns produits !
+            {% endif %}
         </div>
     </div>
     {% endblock %}

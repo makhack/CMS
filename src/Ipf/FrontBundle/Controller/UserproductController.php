@@ -11,6 +11,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Ipf\FrontBundle\Entity\Producttag;
 use Ipf\FrontBundle\Entity\Tag;
+use Ipf\FrontBundle\Entity\Cart;
 
 /**
  * Userproduct controller.
@@ -21,15 +22,24 @@ class UserproductController extends Controller
 
     /**
      * Lists all Userproduct entities.
-     *
+     * TODO :
+     *  Ajouter le nombre de vendeur qui vende ce produit
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        
+        if($request->get('id')){
+            $category = $em->getRepository('IpfFrontBundle:Category')->find($request->get('id'));
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findByCategory($category);
+        }
+        else{
+            $entities = $em->getRepository('IpfFrontBundle:Userproduct')->findAll();
+        }
+        
         $em->getRepository('IpfFrontBundle:product')->findAll();
         $em->getRepository('IpfFrontBundle:user')->findAll();
+        
         return $this->render('IpfFrontBundle:Userproduct:index.html.twig', array(
             'entities' => $entities,
         ));
@@ -50,9 +60,11 @@ class UserproductController extends Controller
             $em->flush();
             
             foreach($entity->getUserproductProduct()->getPictures() as $picture){
+                
                 $picture->setPictureProductid($entity->getUserproductProduct());
+                
                 $em->persist($picture);
-                $em->flush();                
+                $em->flush();
             }
             
             foreach($entity->getUserproductProduct()->getTags() as $tag){
@@ -107,25 +119,24 @@ class UserproductController extends Controller
      * Displays a form to create a new Userproduct entity.
      *
      */
-    public function newAction($id)
+    public function newAction(Request $request)
     {
-        
         $entity = new Userproduct();
         $product = new Product();
         
         $em = $this->getDoctrine()->getManager();
-        
-        $product = $em->getRepository('IpfFrontBundle:Product')->find($id);
-        $product->setPictures(array());
+        if($request->get('id')){
+            var_dump($request->get('id'));
+            $product = $em->getRepository('IpfFrontBundle:Product')->find($request->get('id'));
+            $product->setPictures(array());
+        }
         $entity->setUserproductProduct($product);
+        $entity->setUserproductUser($this->getUser());
         $entity->setUserproductSold(false);
         $entity->setUserproductValidated(false);
-        
-        
+        $entity->setUserproductSaledate(new DateTime('now'));
         $form   = $this->createCreateForm($entity);
-        
-        $form->get('userproductSaledate')->setData(new DateTime('now'));
-        
+
         return $this->render('IpfFrontBundle:Userproduct:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -268,5 +279,42 @@ class UserproductController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    
+    public function searchAction(Request $request){
+        $serializer = $this->get('jms_serializer');
+        $em = $this->getDoctrine()->getManager();
+        
+        $text = $request->get('id');
+        $isCategory = $request->get('isCategory');
+        $isTag = $request->get('isTag');
+        if($text){
+//            var_dump($isCategory);
+            if($isCategory && !$isTag){
+                $em->getRepository('IpfFrontBundle:Product')->findAll();
+                $entities = $em->getRepository('IpfFrontBundle:Userproduct')->searchByProductName($text);
+//                var_dump($entities);
+//                die;   
+            }
+        }
+        else{
+            $entities = array();
+            $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
+            'entities' => $entities,
+            ));
+
+            $json = $serializer->serialize($view, "json");
+            $response = new \Symfony\Component\HttpFoundation\JsonResponse($json);
+            $response->setStatusCode(204);
+            return $response;
+        }
+
+        $view = $this->render('IpfFrontBundle:Userproduct:search.html.twig', array(
+            'entities' => $entities,
+        ));
+        
+        $json = $serializer->serialize($view, "json");
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse($json);
     }
 }

@@ -7,18 +7,21 @@ use Doctrine\ORM\Mapping as ORM;
 use Ipf\FrontBundle\Entity\Product;
 use Ipf\FrontBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Userproduct
  *
  * @ORM\Table(name="userproduct", indexes={@ORM\Index(name="FK_userproduct_user_idx", columns={"userProduct_user_id"}), @ORM\Index(name="FK_userproduct_product_idx", columns={"userProduct_product_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ipf\FrontBundle\Entity\UserProductRepository")
+ * @ExclusionPolicy("all")
  */
 class Userproduct
 {
     /**
      * @var integer
-     *
+     * @Expose
      * @ORM\Column(name="userProduct_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -27,7 +30,8 @@ class Userproduct
 
     /**
      * @var integer
-     *
+     * @Expose
+     * @Assert\NotBlank()
      * @ORM\Column(name="userProduct_price", type="integer", nullable=false)
      */
     private $userproductPrice;
@@ -55,7 +59,7 @@ class Userproduct
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="userProduct_description", type="text", nullable=false)
      */
     private $userproductDescription;
@@ -69,7 +73,8 @@ class Userproduct
 
     /**
      * @var Product
-     *
+     * @Assert\NotBlank()
+     * @Expose
      * @ORM\ManyToOne(targetEntity="Product", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="userProduct_product_id", referencedColumnName="product_id")
@@ -79,7 +84,7 @@ class Userproduct
 
     /**
      * @var User
-     *
+     * 
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="userProduct_user_id", referencedColumnName="user_id")
