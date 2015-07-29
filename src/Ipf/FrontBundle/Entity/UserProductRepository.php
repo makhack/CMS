@@ -28,7 +28,11 @@ class UserProductRepository extends EntityRepository{
         return $userProducts->getQuery()->getResult();
     }
     
+
+    
+    
     public function findBySold($user)
+
     {
         $id = $user->getId();
         $userProductSold = $this->createQueryBuilder('u')
