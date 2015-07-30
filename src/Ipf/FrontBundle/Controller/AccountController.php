@@ -87,9 +87,10 @@ class AccountController extends Controller {
     
     public function infouserAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('IpfFrontBundle:User')->findAll();
-               
+         $user = $this->getUser();
+         //var_dump($user);
+        $entities = $user;
+           //var_dump($entities);    
         
         return $this->render('IpfFrontBundle:Account:infouser.html.twig', array(
             'entities' => $entities,
